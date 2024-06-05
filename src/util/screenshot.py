@@ -33,6 +33,7 @@ class ScreenshotTaker:
 
         # Save the screenshot to the specified path
         self.driver.save_screenshot(screenshot_path)
+        return total_width, total_height
 
     def close(self):
         # Close the browser
@@ -44,7 +45,7 @@ def get_thumbnail_for_llava(path: str):
     image = Image.open(path)
 
     # Resize the image in place
-    image.thumbnail((672, 336))
+    image.thumbnail((667, 336))
 
     # Extract directory and file parts
     dirname = os.path.dirname(path)
@@ -66,28 +67,46 @@ def concat_images_with_line(image_path1: str, image_path2: str, save_path: str):
     image1 = Image.open(image_path1)
     image2 = Image.open(image_path2)
 
-    # Resize images to have the same height if necessary
-    if image1.height != image2.height:
-        new_height = min(image1.height, image2.height)
-        image1 = image1.resize((int(image1.width * new_height / image1.height), new_height), Image.ANTIALIAS)
-        image2 = image2.resize((int(image2.width * new_height / image2.height), new_height), Image.ANTIALIAS)
+    # The width for each image is assumed to be max 667 pixels and the height 336 pixels
+    # 10 pixels are reserved for the black line in the middle
+    new_width = 667 * 2 + 10
+    new_height = 336
+    new_image = Image.new('RGB', (new_width, new_height), "black")  # Create a new black image to ensure the entire area is filled
 
-    # Create a new image with a width equal to the sum of both images and a small gap for the line
-    total_width = image1.width + image2.width
-    new_image = Image.new('RGB', (total_width, image1.height))
+    # Calculate the starting x-coordinate for image2 to leave a 10-pixel black line
+    image2_start_x = 667 + 10
 
     # Paste image1 on the left
     new_image.paste(image1, (0, 0))
 
-    # Paste image2 on the right
-    new_image.paste(image2, (image1.width + 1, 0))
-
-    # Draw a black line between the images
-    draw = ImageDraw.Draw(new_image)
-    line_x = image1.width - 6
-    draw.line((line_x, 0, line_x, image1.height), fill='black', width=10)
+    # Paste image2 on the right, starting after the 10-pixel gap
+    new_image.paste(image2, (image2_start_x, 0))
 
     # Save the resulting image to the provided path
     new_image.save(save_path)
 
-    return save_path  # Optionally return the path to the saved image
+    return save_path
+    
+def concat_images_with_line_full_res(img1_path, img2_path, save_path: str):
+    # Open the images
+    img1 = Image.open(img1_path)
+    img2 = Image.open(img2_path)
+
+    # Determine the new width and height
+    new_width = img1.width + img2.width + 10
+    new_height = max(img1.height, img2.height)
+
+    # Create a new image with the new dimensions, filled with black
+    new_img = Image.new('RGB', (new_width, new_height), "black")
+
+    # Paste the first image
+    new_img.paste(img1, (0, 0))
+
+    # Paste the second image, offset by the width of the first image + 10 pixels
+    new_img.paste(img2, (img1.width + 10, 0))
+
+    # Save the resulting image to the provided path
+    new_img.save(save_path)
+
+    return save_path
+

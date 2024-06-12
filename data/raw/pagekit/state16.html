@@ -1,0 +1,301 @@
+<html lang="en-GB" class="uk-notouch"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin,latin-ext" rel="stylesheet">
+                                <meta name="generator" content="Pagekit">
+        <link href="/pagekit/app/system/modules/theme/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="/pagekit/app/system/modules/theme/apple_touch_icon.png" rel="apple-touch-icon-precomposed">
+        <title>Edit User | Testing</title>
+        <link href="/pagekit/app/system/modules/theme/css/theme.css?v=d10d" rel="stylesheet">
+        <script>var $data = {"user":{"id":1,"username":"admin","email":"asd@asd.com","url":"","registered":"2018-02-17T19:37:24+00:00","status":1,"name":"admin","login":"2019-08-20T09:07:22+00:00","permissions":null,"roles":[2,3],"data":{}},"config":{"statuses":{"1":"Active","0":"Blocked"},"roles":[{"id":2,"name":"Authenticated","priority":1,"permissions":["blog: post comments"],"locked":true,"anonymous":false,"authenticated":true,"administrator":false,"disabled":true},{"id":3,"name":"Administrator","priority":2,"permissions":[],"locked":true,"anonymous":false,"authenticated":false,"administrator":true,"disabled":true}],"emailVerification":true,"currentUser":1}};</script>
+        <script>var $pagekit = {"editor":"html","storage":"\/storage","user":{"id":1,"name":"admin","email":"asd@asd.com","username":"admin"},"menu":[{"id":"system: marketplace","label":"Marketplace","parent":"root","priority":125,"icon":"\/pagekit\/app\/installer\/assets\/images\/icon-marketplace.svg","url":"\/pagekit\/index.php\/admin\/system\/marketplace\/extensions","access":"system: manage packages","active":false},{"id":"system: marketplace extensions","label":"Extensions","parent":"system: marketplace","priority":0,"url":"\/pagekit\/index.php\/admin\/system\/marketplace\/extensions","active":false},{"id":"system: marketplace themes","label":"Themes","parent":"system: marketplace","priority":0,"url":"\/pagekit\/index.php\/admin\/system\/marketplace\/themes","active":false},{"id":"system: extensions","label":"Extensions","parent":"system: system","priority":5,"url":"\/pagekit\/index.php\/admin\/system\/package\/extensions","access":"system: manage packages","active":false},{"id":"system: themes","label":"Themes","parent":"system: system","priority":10,"url":"\/pagekit\/index.php\/admin\/system\/package\/themes","access":"system: manage packages","active":false},{"id":"system: update","label":"Update","parent":"system: system","priority":25,"url":"\/pagekit\/index.php\/admin\/system\/update","active":false},{"id":"site: widgets","label":"Widgets","parent":"site","priority":20,"url":"\/pagekit\/index.php\/admin\/site\/widget","access":"system: manage widgets","active":false},{"id":"dashboard","label":"Dashboard","parent":"root","priority":100,"icon":"\/pagekit\/app\/system\/modules\/dashboard\/assets\/images\/icon-dashboard.svg","url":"\/pagekit\/index.php\/admin\/dashboard","active":false},{"id":"system: storage","label":"Storage","parent":"site","priority":20,"url":"\/pagekit\/index.php\/admin\/site\/storage","access":"system: manage storage","active":false},{"id":"system: info","label":"Info","parent":"system: system","priority":30,"url":"\/pagekit\/index.php\/admin\/system\/info","active":false},{"id":"system: system","label":"System","parent":"root","priority":120,"icon":"\/pagekit\/app\/system\/modules\/settings\/assets\/images\/icon-settings.svg","access":"system: access settings","url":"\/pagekit\/index.php\/admin\/system\/settings","active":false},{"id":"system: settings","label":"Settings","parent":"system: system","priority":0,"url":"\/pagekit\/index.php\/admin\/system\/settings","active":false},{"id":"site","label":"Site","parent":"root","priority":105,"icon":"\/pagekit\/app\/system\/modules\/site\/assets\/images\/icon-site.svg","url":"\/pagekit\/index.php\/admin\/site\/page","access":"site: manage site || system: manage widgets || system: manage storage || system: access settings","active":false},{"id":"site: pages","label":"Pages","parent":"site","priority":0,"url":"\/pagekit\/index.php\/admin\/site\/page","access":"site: manage site","active":false},{"id":"site: settings","label":"Settings","parent":"site","priority":30,"url":"\/pagekit\/index.php\/admin\/site\/settings","access":"system: access settings","active":false},{"id":"user","label":"Users","parent":"root","priority":115,"icon":"\/pagekit\/app\/system\/modules\/user\/assets\/images\/icon-users.svg","url":"\/pagekit\/index.php\/admin\/user","active":true,"access":"user: manage users || user: manage user permissions || system: access settings"},{"id":"user: users","label":"List","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user","active":true,"access":"user: manage users"},{"id":"user: permissions","label":"Permissions","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user\/permissions","access":"user: manage user permissions","active":false},{"id":"user: roles","label":"Roles","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user\/roles","access":"user: manage user permissions","active":false},{"id":"user: settings","label":"Settings","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user\/settings","access":"system: access settings","active":false}],"url":"\/pagekit\/index.php","csrf":"a6958f1abc448e06ea2f4e06b5589203f8c4c2e7"};</script>
+        <script src="/pagekit/app/assets/vue/dist/vue.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/jquery/dist/jquery.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/lodash/lodash.min.js?v=d10d"></script>
+        <script src="/pagekit/index.php/system/intl/en_GB?v=d10d"></script>
+        <script src="/pagekit/app/system/app/bundle/vue.js?v=d10d"></script>
+        <script src="/pagekit/app/system/modules/user/app/bundle/interceptor.js?v=d10d"></script>
+        <script src="/pagekit/app/system/modules/user/app/bundle/user-edit.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/uikit.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/notify.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/tooltip.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/sticky.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/sortable.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/pagination.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/form-select.min.js?v=d10d"></script>
+        <script src="/pagekit/app/system/modules/theme/js/theme.js?v=d10d"></script>
+    </head>
+    <body>
+
+        <header id="header" class="tm-header">
+            <div class="uk-container uk-container-center">
+
+                <div class="tm-headerbar uk-flex uk-flex-space-between uk-flex-middle uk-hidden-small">
+                    <div class="tm-headerbar-primary" data-uk-dropdown="{mode:'click', preventflip: 'y'}">
+
+                        <div class="tm-cursor-pointer uk-flex uk-flex-middle">
+                            <i class="tm-icon-menu"></i>
+                            <h1 class="tm-heading">Users</h1>
+                        </div>
+
+                        <div class="uk-dropdown uk-dropdown-navbar tm-dropdown">
+                            <ul id="js-appnav" class="uk-sortable uk-grid uk-grid-small uk-grid-width-1-3" data-url="/pagekit/index.php/admin/adminmenu" data-uk-sortable="{ dragCustomClass: 'tm-sortable-dragged', handleClass: 'uk-panel' }">
+                                <li data-id="dashboard">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/dashboard">
+                                        <img width="50" height="50" alt="Dashboard" src="/pagekit/app/system/modules/dashboard/assets/images/icon-dashboard.svg">
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li><li data-id="site">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/site/page">
+                                        <img width="50" height="50" alt="Site" src="/pagekit/app/system/modules/site/assets/images/icon-site.svg">
+                                        <p>Site</p>
+                                    </a>
+                                </li><li data-id="user">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/user">
+                                        <img width="50" height="50" alt="Users" src="/pagekit/app/system/modules/user/assets/images/icon-users.svg">
+                                        <p>Users</p>
+                                    </a>
+                                </li><li data-id="system: system">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/system/settings">
+                                        <img width="50" height="50" alt="System" src="/pagekit/app/system/modules/settings/assets/images/icon-settings.svg">
+                                        <p>System</p>
+                                    </a>
+                                </li><li data-id="system: marketplace">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/system/marketplace/extensions">
+                                        <img width="50" height="50" alt="Marketplace" src="/pagekit/app/installer/assets/images/icon-marketplace.svg">
+                                        <p>Marketplace</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="tm-contrast">
+
+                        <ul class="uk-grid uk-grid-small uk-flex-middle">
+                            <li><a class="tm-icon-help" href="https://gitter.im/pagekit/pagekit" target="_blank" title="Get Help"></a></li>
+                            <li><a class="tm-icon-visit" target="_blank" href="/pagekit/index.php/" title="Visit Site"></a></li>
+                            <li><a class="tm-icon-logout" href="/pagekit/index.php/user/logout?redirect=admin/login" title="Logout"></a></li>
+                            <li class="uk-margin-small-left"><a href="/pagekit/index.php/admin/user/edit?id=1" title="Profile"><img class="uk-border-circle uk-margin-small-right" height="32" width="32" title="admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADGElEQVR4Xu1Za1faQBAdIBZBfIIVFVEEUeur//9PtCpFEHkqKFABH+GhPLqjZotoG9K64Zxk7jl82OwGdi6z984klm9HJz0wMSxEAGUAHQHSABNrIJAIkguQC5ALkAuQC5iYAbJBskGyQbJBskETm8BomqGxMQlmpiY57/VGE+R6YyT/w0hscH3VB1NTLh5wp9OF4+ipeQg42N0Ei8XyKuBU5hxu72TdSdA9A9xzM7Cy7H0TaIMdg/hZxvgEbIfXwW7/9BQopr7NZuVBH0cT7FpHVxJ0zQBJkmB3O8QDzOTysOZf5uPrSg3O81fGJQBTH4+Agu/HMdhiGTH+khHdbg+OfsSNS8D+This1ueUbzZbEEukweOeBd/SAg86e16Aau1WNxJ0OwKTrgkIBlZ4YPlCEcrX1afx170tfr3VeoCT05TxCNgIrsKE0/Eq/ZVBKOAHl8vJ56KxJDw8PupCgi4ZgJ6P3q/gXq7DWSrHx64JJ4TW/Xxcu7mFTK5gHAK8nz3gXfDwgDB4JKEfe1/C3BJ7vR4cRvQRQ10yAK0PLRDR7XaZ0r8te33MITx9DnHBNOLni0aITAXhBIzb7czqAqpeL0k2ViNs8HWoAagFoiGcgABrfKb7Gh9Mb/y8B8UilbnYaRqarZZQDoQT8F7jM2xE2BxhkyQSQgmYm50Gv2/xv/aP1aJICCWgv8zFIKLxJPRYufs3+FeWYLKvJrgslqFYuhbGgTACBkWtwUrfOCt91eBwjMNmaI0va7c7EDlJqN32z/PCCBi0tdzFJVSqN0NtFN0ACVSQSGaFPTITRkB/44OifxgZ/iwveudhYd7NCZDlBiRS2aHI07pICAF4hoOsvldwdy9DMj28mlutFtjf+V064/dgm4zt8kdDCAGDjc97pa9aIGGmA06mBwpK5QoUrkpqt2meF0LAwe4We+j5vJc/lb5qO8XiCYsoBe12m4nhmdptmueFEKB5FyO8gQig1+P0epxej3+8uY5Q1LT+NIkgiSCJIIkgiaBW5TTSenIBcgFyAXIBcgEjqbrWWMgFyAVM7gK/ALNqyhBG3wWzAAAAAElFTkSuQmCC"> <span>admin</span></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <nav class="uk-navbar tm-navbar uk-hidden-small">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active">
+                            <a href="/pagekit/index.php/admin/user">List</a>
+                        </li><li>
+                            <a href="/pagekit/index.php/admin/user/permissions">Permissions</a>
+                        </li><li>
+                            <a href="/pagekit/index.php/admin/user/roles">Roles</a>
+                        </li><li>
+                            <a href="/pagekit/index.php/admin/user/settings">Settings</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="tm-headerbar uk-flex uk-flex-space-between uk-flex-middle uk-visible-small">
+                    <a class="tm-icon-menu" href="#offcanvas" data-uk-offcanvas=""></a>
+
+                    <h1 class="tm-heading uk-h3">Users</h1>
+
+                    <a href="#offcanvas-flip" data-uk-offcanvas="">
+                        <img class="uk-border-circle" height="32" width="32" alt="admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADGElEQVR4Xu1Za1faQBAdIBZBfIIVFVEEUeur//9PtCpFEHkqKFABH+GhPLqjZotoG9K64Zxk7jl82OwGdi6z984klm9HJz0wMSxEAGUAHQHSABNrIJAIkguQC5ALkAuQC5iYAbJBskGyQbJBskETm8BomqGxMQlmpiY57/VGE+R6YyT/w0hscH3VB1NTLh5wp9OF4+ipeQg42N0Ei8XyKuBU5hxu72TdSdA9A9xzM7Cy7H0TaIMdg/hZxvgEbIfXwW7/9BQopr7NZuVBH0cT7FpHVxJ0zQBJkmB3O8QDzOTysOZf5uPrSg3O81fGJQBTH4+Agu/HMdhiGTH+khHdbg+OfsSNS8D+This1ueUbzZbEEukweOeBd/SAg86e16Aau1WNxJ0OwKTrgkIBlZ4YPlCEcrX1afx170tfr3VeoCT05TxCNgIrsKE0/Eq/ZVBKOAHl8vJ56KxJDw8PupCgi4ZgJ6P3q/gXq7DWSrHx64JJ4TW/Xxcu7mFTK5gHAK8nz3gXfDwgDB4JKEfe1/C3BJ7vR4cRvQRQ10yAK0PLRDR7XaZ0r8te33MITx9DnHBNOLni0aITAXhBIzb7czqAqpeL0k2ViNs8HWoAagFoiGcgABrfKb7Gh9Mb/y8B8UilbnYaRqarZZQDoQT8F7jM2xE2BxhkyQSQgmYm50Gv2/xv/aP1aJICCWgv8zFIKLxJPRYufs3+FeWYLKvJrgslqFYuhbGgTACBkWtwUrfOCt91eBwjMNmaI0va7c7EDlJqN32z/PCCBi0tdzFJVSqN0NtFN0ACVSQSGaFPTITRkB/44OifxgZ/iwveudhYd7NCZDlBiRS2aHI07pICAF4hoOsvldwdy9DMj28mlutFtjf+V064/dgm4zt8kdDCAGDjc97pa9aIGGmA06mBwpK5QoUrkpqt2meF0LAwe4We+j5vJc/lb5qO8XiCYsoBe12m4nhmdptmueFEKB5FyO8gQig1+P0epxej3+8uY5Q1LT+NIkgiSCJIIkgiaBW5TTSenIBcgFyAXIBcgEjqbrWWMgFyAVM7gK/ALNqyhBG3wWzAAAAAElFTkSuQmCC">
+                    </a>
+                </div>
+
+            </div>
+        </header>
+
+        <main class="tm-main uk-container uk-container-center">
+            
+<form id="user-edit" class="uk-form uk-form-horizontal">
+
+    <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin="">
+        <div data-uk-margin="">
+
+            <h2 class="uk-margin-remove">Edit User</h2>
+            
+
+        </div>
+        <div data-uk-margin="">
+
+            <a class="uk-button uk-margin-small-right" href="/pagekit/index.php/admin/user">Close</a>
+            <button class="uk-button uk-button-primary" type="submit">Save</button>
+
+        </div>
+    </div>
+
+    <ul class="uk-tab" style="display: none;">
+        <li aria-expanded="true" class="uk-active"><a>User</a></li>
+    <li class="uk-tab-responsive uk-active uk-hidden" aria-haspopup="true" aria-expanded="false"><a>User</a><div class="uk-dropdown uk-dropdown-small" aria-hidden="true"><ul class="uk-nav uk-nav-dropdown"></ul><div></div></div></li></ul>
+
+    <div class="uk-switcher uk-margin">
+        <div aria-hidden="false" class="uk-active">
+            <div class="uk-grid" data-uk-grid-margin="">
+    <div class="uk-width-medium-2-3 uk-width-large-3-4 uk-row-first">
+
+        <div class="uk-form-row">
+            <label for="form-username" class="uk-form-label">Username</label>
+            <div class="uk-form-controls">
+                <input id="form-username" autocomplete="new-username" class="uk-form-width-large" type="text" name="username">
+                <p class="uk-form-help-block uk-text-danger" style="display: none;">Username cannot be blank and may only contain alphanumeric characters (A-Z, 0-9) and some special characters ("._-")</p>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <label for="form-name" class="uk-form-label">Name</label>
+            <div class="uk-form-controls">
+                <input id="form-name" autocomplete="new-name" class="uk-form-width-large" type="text" name="name">
+                <p class="uk-form-help-block uk-text-danger" style="display: none;">Name cannot be blank.</p>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <label for="form-email" class="uk-form-label">Email</label>
+            <div class="uk-form-controls">
+                <input id="form-email" autocomplete="new-email" class="uk-form-width-large" type="text" name="email">
+                <p class="uk-form-help-block uk-text-danger" style="display: none;">Field must be a valid email address.</p>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <label for="form-password" class="uk-form-label">Password</label>
+            <div class="uk-form-controls uk-form-controls-text">
+                <a href="#">Change password</a>
+            </div>
+            <div class="uk-form-controls uk-hidden">
+                <div class="uk-form-password">
+                    <input id="form-password" autocomplete="new-password" class="uk-form-width-large" type="password">
+                    <a href="#" class="uk-form-password-toggle">Show</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <span class="uk-form-label">Status</span>
+            <div class="uk-form-controls uk-form-controls-text">
+                <p class="uk-form-controls-condensed">
+                    <label><input type="radio" value="0" disabled=""> Blocked</label>
+                </p><p class="uk-form-controls-condensed">
+                    <label><input type="radio" value="1" disabled=""> Active</label>
+                </p>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <span class="uk-form-label">Roles</span>
+            <div class="uk-form-controls uk-form-controls-text">
+                <p class="uk-form-controls-condensed">
+                    <label><input type="checkbox" value="2" disabled=""> Authenticated</label>
+                </p><p class="uk-form-controls-condensed">
+                    <label><input type="checkbox" value="3" disabled=""> Administrator</label>
+                </p>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <span class="uk-form-label">Last login</span>
+            <div class="uk-form-controls uk-form-controls-text">
+                <p>20 Aug 2019</p>
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <span class="uk-form-label">Registered since</span>
+            <div class="uk-form-controls uk-form-controls-text">
+                17 Feb 2018
+            </div>
+        </div>
+
+    </div>
+
+    <div class="uk-width-medium-1-3 uk-width-large-1-4">
+
+        <div class="uk-panel uk-panel-box uk-text-center">
+
+            <div class="uk-panel-teaser">
+                <img height="280" width="280" alt="admin" src="data:image/png;base64,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">
+            </div>
+
+            <h3 class="uk-panel-tile uk-margin-bottom-remove uk-text-break">admin
+                <i title="Active"></i>
+            </h3>
+
+            <div>
+                <a class="uk-text-break" href="mailto:asd@asd.com">asd@asd.com</a><i class="uk-icon-check" title="Verified email address" style="display: none;"></i>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+        </div>
+    </div>
+
+</form>
+        </main>
+
+        <div class="uk-hidden"><div class="pk-system-messages"></div></div>
+
+        <div id="offcanvas" class="uk-offcanvas">
+            <div class="uk-offcanvas-bar">
+
+                <ul class="uk-nav uk-nav-offcanvas">
+                    <li class="uk-nav-header">Users</li>
+                    <li class="uk-active">
+                        <a href="/pagekit/index.php/admin/user">List</a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/user/permissions">Permissions</a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/user/roles">Roles</a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/user/settings">Settings</a>
+                    </li>
+                    <li class="uk-nav-divider"></li>
+                    <li class="uk-nav-header">Extensions</li>
+                    <li>
+                        <a href="/pagekit/index.php/admin/dashboard">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Dashboard" src="/pagekit/app/system/modules/dashboard/assets/images/icon-dashboard.svg"> Dashboard
+                        </a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/site/page">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Site" src="/pagekit/app/system/modules/site/assets/images/icon-site.svg"> Site
+                        </a>
+                    </li><li class="uk-active">
+                        <a href="/pagekit/index.php/admin/user">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Users" src="/pagekit/app/system/modules/user/assets/images/icon-users.svg"> Users
+                        </a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/system/settings">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="System" src="/pagekit/app/system/modules/settings/assets/images/icon-settings.svg"> System
+                        </a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/system/marketplace/extensions">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Marketplace" src="/pagekit/app/installer/assets/images/icon-marketplace.svg"> Marketplace
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div id="offcanvas-flip" class="uk-offcanvas">
+            <div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
+
+                <ul class="uk-nav uk-nav-offcanvas">
+                    <li class="uk-nav-header">admin</li>
+                    <li><a target="_blank" href="/pagekit/index.php/">Visit Site</a></li>
+                    <li><a href="/pagekit/index.php/admin/user/edit?id=1">Settings</a></li>
+                    <li><a href="/pagekit/index.php/user/logout?redirect=admin/login">Logout</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+    
+
+</body></html>

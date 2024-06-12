@@ -1,0 +1,91 @@
+<html><head>
+	<link rel="stylesheet" type="text/css" href="/mantisbt/css/default.css">
+	<script type="text/javascript" language="JavaScript"><!--
+		if(document.layers) {document.write("<style>td{padding:0px;}<\/style>")}
+	// --></script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Pragma-directive" content="no-cache">
+	<meta http-equiv="Cache-Directive" content="no-cache">
+	<meta http-equiv="Expires" content="Tue, 20 Aug 2019 01:20:48 GMT">
+	<link rel="shortcut icon" href="/mantisbt/images/favicon.ico" type="image/x-icon">
+	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="http://192.168.99.101:3000/mantisbt/browser_search_plugin.php?type=text">	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="http://192.168.99.101:3000/mantisbt/browser_search_plugin.php?type=id">	<title>Manage Projects - MantisBT</title>
+<script type="text/javascript" src="/mantisbt/javascript/min/common.js"></script>
+<script language="javascript">var loading_lang = "Loading...";</script><script type="text/javascript" src="/mantisbt/javascript/min/ajax.js"></script>
+</head>
+<body>
+<div align="left"><a href="my_view_page.php"><img border="0" alt="Mantis Bug Tracker" src="/mantisbt/images/mantis_logo.gif"></a></div><table class="hide"><tbody><tr><td class="login-info-left">Logged in as: <span class="italic">administrator</span> <span class="small">(administrator)</span></td><td class="login-info-middle"><span class="italic">2019-08-20 01:20 UTC</span></td><td class="login-info-right"><form method="post" name="form_set_project" action="/mantisbt/set_project.php">Project: <select name="project_id" class="small" onchange="document.forms.form_set_project.submit();"><option value="0" selected="selected">All Projects</option>
+</select> <input type="submit" class="button-small" value="Switch"></form><a href="http://192.168.99.101:3000/mantisbt/issues_rss.php?username=administrator&amp;key=021c6555cf022731feb72e4a25ff20d9"><img src="/mantisbt/images/rss.png" alt="RSS" style="border-style: none; margin: 5px; vertical-align: middle;"></a></td></tr></tbody></table><table class="width100" cellspacing="0"><tbody><tr><td class="menu"><a href="/mantisbt/main_page.php">Main</a> | <a href="/mantisbt/my_view_page.php">My View</a> | <a href="/mantisbt/view_all_bug_page.php">View Issues</a> | <a href="/mantisbt/bug_report_page.php">Report Issue</a> | <a href="/mantisbt/changelog_page.php">Change Log</a> | <a href="/mantisbt/roadmap_page.php">Roadmap</a> | <a href="/mantisbt/summary_page.php">Summary</a> | <a href="/mantisbt/manage_overview_page.php">Manage</a> | <a href="/mantisbt/account_page.php">My Account</a> | <a href="/mantisbt/logout_page.php">Logout</a></td><td class="menu right nowrap"><form method="post" action="/mantisbt/jump_to_bug.php"><input type="text" name="bug_id" size="10" class="small" value="Issue #" onfocus="if (this.value == 'Issue #') this.value = ''" onblur="if (this.value == '') this.value = 'Issue #'">&nbsp;<input type="submit" class="button-small" value="Jump">&nbsp;</form></td></tr></tbody></table><div align="center"><p><span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_user_page.php">Manage Users</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;Manage Projects&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_tags_page.php">Manage Tags</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_custom_field_page.php">Manage Custom Fields</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_prof_menu_page.php">Manage Global Profiles</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_plugin_page.php">Manage Plugins</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/adm_config_report.php">Manage Configuration</a>&nbsp;]</span> </p></div><br>
+<table class="width100" cellspacing="1">
+<tbody><tr>
+	<td class="form-title" colspan="5">
+		Projects<form method="post" action="manage_proj_create_page.php"><input type="hidden" name="manage_proj_create_page_token" value="20190820be9bd46a53b0fcfb59b369e676384922ddda3e1a"><input type="submit" class="button-small" value="Create New Project"></form>	</td>
+</tr>
+<tr class="row-category">
+	<td width="20%">
+		<a href="manage_proj_page.php?sort=name&amp;dir=DESC">Name</a><img src="http://192.168.99.101:3000/mantisbt/images/up.gif" alt="">	</td>
+	<td width="10%">
+		<a href="manage_proj_page.php?sort=status&amp;dir=ASC">Status</a>	</td>
+	<td width="10%">
+		<a href="manage_proj_page.php?sort=enabled&amp;dir=ASC">Enabled</a>	</td>
+	<td width="10%">
+		<a href="manage_proj_page.php?sort=view_state&amp;dir=ASC">View Status</a>	</td>
+	<td width="40%">
+		<a href="manage_proj_page.php?sort=description&amp;dir=ASC">Description</a>	</td>
+</tr>
+</tbody></table>
+<br>
+
+<!-- GLOBAL CATEGORIES -->
+<a name="categories">
+<div align="center">
+<table class="width75" cellspacing="1">
+
+<!-- Title -->
+<tbody><tr>
+	<td class="form-title" colspan="3">
+		Global Categories	</td>
+</tr>
+		<tr class="row-category">
+			<td>
+				Category			</td>
+			<td>
+				Assign To			</td>
+			<td class="center">
+				Actions			</td>
+		</tr>
+<!-- Repeated Info Row -->
+		<tr class="row-1">
+			<td>
+				General			</td>
+			<td>
+							</td>
+			<td class="center">
+				<form method="post" action="manage_proj_cat_edit_page.php?id=1&amp;project_id=0"><input type="hidden" name="manage_proj_cat_edit_page_token" value="201908203a61f45a3b5b606c9def31bd39e0cad4392fa9ef"><input type="submit" class="button-small" value="Edit"></form>&nbsp;<form method="post" action="manage_proj_cat_delete.php?id=1&amp;project_id=0"><input type="hidden" name="manage_proj_cat_delete_token" value="201908203f64ac6632c4347d7422f0183237f1d80e997ad7"><input type="submit" class="button-small" value="Delete"></form>			</td>
+		</tr>
+
+<!-- Add Category Form -->
+<tr>
+	<td class="left" colspan="3">
+		<form method="post" action="manage_proj_cat_add.php">
+			<input type="hidden" name="manage_proj_cat_add_token" value="2019082057f5a7d8f2bae6ce4a460ff18ebda7157c97f447">			<input type="hidden" name="project_id" value="0">
+			<input type="text" name="name" size="32" maxlength="128">
+			<input type="submit" class="button" value="Add Category">
+		</form>
+	</td>
+</tr>
+
+</tbody></table>
+</div>
+
+	<br>
+	<hr size="1">
+<table border="0" width="100%" cellspacing="0" cellpadding="0"><tbody><tr valign="top"><td>	<address>Copyright © 2000 - 2010 MantisBT Group</address>
+	<address><a href="mailto:webmaster@example.com">webmaster@example.com</a></address>
+</td><td>
+	<div align="right"><a href="http://www.mantisbt.org" title="Free Web Based Bug Tracker"><img src="/mantisbt/images/mantis_logo_button.gif" width="88" height="35" alt="Powered by Mantis Bugtracker" border="0"></a></div>
+</td></tr></tbody></table>
+
+
+</a></body></html>

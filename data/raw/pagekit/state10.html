@@ -1,0 +1,267 @@
+<html lang="en-GB" class="uk-notouch"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin,latin-ext" rel="stylesheet">
+                                <meta name="generator" content="Pagekit">
+        <link href="/pagekit/app/system/modules/theme/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="/pagekit/app/system/modules/theme/apple_touch_icon.png" rel="apple-touch-icon-precomposed">
+        <title>Users | Testing</title>
+        <link href="/pagekit/app/system/modules/theme/css/theme.css?v=d10d" rel="stylesheet">
+        <script>var $data = {"config":{"statuses":{"1":"Active","0":"Blocked"},"roles":[{"id":3,"name":"Administrator","priority":2,"permissions":[],"locked":true,"anonymous":false,"authenticated":false,"administrator":true}],"emailVerification":true,"filter":{},"page":null}};</script>
+        <script>var $pagekit = {"editor":"html","storage":"\/storage","user":{"id":1,"name":"admin","email":"asd@asd.com","username":"admin"},"menu":[{"id":"system: marketplace","label":"Marketplace","parent":"root","priority":125,"icon":"\/pagekit\/app\/installer\/assets\/images\/icon-marketplace.svg","url":"\/pagekit\/index.php\/admin\/system\/marketplace\/extensions","access":"system: manage packages","active":false},{"id":"system: marketplace extensions","label":"Extensions","parent":"system: marketplace","priority":0,"url":"\/pagekit\/index.php\/admin\/system\/marketplace\/extensions","active":false},{"id":"system: marketplace themes","label":"Themes","parent":"system: marketplace","priority":0,"url":"\/pagekit\/index.php\/admin\/system\/marketplace\/themes","active":false},{"id":"system: extensions","label":"Extensions","parent":"system: system","priority":5,"url":"\/pagekit\/index.php\/admin\/system\/package\/extensions","access":"system: manage packages","active":false},{"id":"system: themes","label":"Themes","parent":"system: system","priority":10,"url":"\/pagekit\/index.php\/admin\/system\/package\/themes","access":"system: manage packages","active":false},{"id":"system: update","label":"Update","parent":"system: system","priority":25,"url":"\/pagekit\/index.php\/admin\/system\/update","active":false},{"id":"site: widgets","label":"Widgets","parent":"site","priority":20,"url":"\/pagekit\/index.php\/admin\/site\/widget","access":"system: manage widgets","active":false},{"id":"dashboard","label":"Dashboard","parent":"root","priority":100,"icon":"\/pagekit\/app\/system\/modules\/dashboard\/assets\/images\/icon-dashboard.svg","url":"\/pagekit\/index.php\/admin\/dashboard","active":false},{"id":"system: storage","label":"Storage","parent":"site","priority":20,"url":"\/pagekit\/index.php\/admin\/site\/storage","access":"system: manage storage","active":false},{"id":"system: info","label":"Info","parent":"system: system","priority":30,"url":"\/pagekit\/index.php\/admin\/system\/info","active":false},{"id":"system: system","label":"System","parent":"root","priority":120,"icon":"\/pagekit\/app\/system\/modules\/settings\/assets\/images\/icon-settings.svg","access":"system: access settings","url":"\/pagekit\/index.php\/admin\/system\/settings","active":false},{"id":"system: settings","label":"Settings","parent":"system: system","priority":0,"url":"\/pagekit\/index.php\/admin\/system\/settings","active":false},{"id":"site","label":"Site","parent":"root","priority":105,"icon":"\/pagekit\/app\/system\/modules\/site\/assets\/images\/icon-site.svg","url":"\/pagekit\/index.php\/admin\/site\/page","access":"site: manage site || system: manage widgets || system: manage storage || system: access settings","active":false},{"id":"site: pages","label":"Pages","parent":"site","priority":0,"url":"\/pagekit\/index.php\/admin\/site\/page","access":"site: manage site","active":false},{"id":"site: settings","label":"Settings","parent":"site","priority":30,"url":"\/pagekit\/index.php\/admin\/site\/settings","access":"system: access settings","active":false},{"id":"user","label":"Users","parent":"root","priority":115,"icon":"\/pagekit\/app\/system\/modules\/user\/assets\/images\/icon-users.svg","url":"\/pagekit\/index.php\/admin\/user","active":true,"access":"user: manage users || user: manage user permissions || system: access settings"},{"id":"user: users","label":"List","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user","active":true,"access":"user: manage users"},{"id":"user: permissions","label":"Permissions","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user\/permissions","access":"user: manage user permissions","active":false},{"id":"user: roles","label":"Roles","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user\/roles","access":"user: manage user permissions","active":false},{"id":"user: settings","label":"Settings","parent":"user","priority":0,"url":"\/pagekit\/index.php\/admin\/user\/settings","access":"system: access settings","active":false}],"url":"\/pagekit\/index.php","csrf":"a6958f1abc448e06ea2f4e06b5589203f8c4c2e7"};</script>
+        <script src="/pagekit/app/assets/vue/dist/vue.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/jquery/dist/jquery.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/lodash/lodash.min.js?v=d10d"></script>
+        <script src="/pagekit/index.php/system/intl/en_GB?v=d10d"></script>
+        <script src="/pagekit/app/system/app/bundle/vue.js?v=d10d"></script>
+        <script src="/pagekit/app/system/modules/user/app/bundle/interceptor.js?v=d10d"></script>
+        <script src="/pagekit/app/system/modules/user/app/bundle/user-index.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/uikit.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/notify.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/tooltip.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/sticky.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/sortable.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/pagination.min.js?v=d10d"></script>
+        <script src="/pagekit/app/assets/uikit/js/components/form-select.min.js?v=d10d"></script>
+        <script src="/pagekit/app/system/modules/theme/js/theme.js?v=d10d"></script>
+    </head>
+    <body>
+
+        <header id="header" class="tm-header">
+            <div class="uk-container uk-container-center">
+
+                <div class="tm-headerbar uk-flex uk-flex-space-between uk-flex-middle uk-hidden-small">
+                    <div class="tm-headerbar-primary" data-uk-dropdown="{mode:'click', preventflip: 'y'}">
+
+                        <div class="tm-cursor-pointer uk-flex uk-flex-middle">
+                            <i class="tm-icon-menu"></i>
+                            <h1 class="tm-heading">Users</h1>
+                        </div>
+
+                        <div class="uk-dropdown uk-dropdown-navbar tm-dropdown">
+                            <ul id="js-appnav" class="uk-sortable uk-grid uk-grid-small uk-grid-width-1-3" data-url="/pagekit/index.php/admin/adminmenu" data-uk-sortable="{ dragCustomClass: 'tm-sortable-dragged', handleClass: 'uk-panel' }">
+                                <li data-id="dashboard">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/dashboard">
+                                        <img width="50" height="50" alt="Dashboard" src="/pagekit/app/system/modules/dashboard/assets/images/icon-dashboard.svg">
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li><li data-id="site">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/site/page">
+                                        <img width="50" height="50" alt="Site" src="/pagekit/app/system/modules/site/assets/images/icon-site.svg">
+                                        <p>Site</p>
+                                    </a>
+                                </li><li data-id="user">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/user">
+                                        <img width="50" height="50" alt="Users" src="/pagekit/app/system/modules/user/assets/images/icon-users.svg">
+                                        <p>Users</p>
+                                    </a>
+                                </li><li data-id="system: system">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/system/settings">
+                                        <img width="50" height="50" alt="System" src="/pagekit/app/system/modules/settings/assets/images/icon-settings.svg">
+                                        <p>System</p>
+                                    </a>
+                                </li><li data-id="system: marketplace">
+                                    <a class="uk-panel tm-panel-icon" href="/pagekit/index.php/admin/system/marketplace/extensions">
+                                        <img width="50" height="50" alt="Marketplace" src="/pagekit/app/installer/assets/images/icon-marketplace.svg">
+                                        <p>Marketplace</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="tm-contrast">
+
+                        <ul class="uk-grid uk-grid-small uk-flex-middle">
+                            <li><a class="tm-icon-help" href="https://gitter.im/pagekit/pagekit" target="_blank" title="Get Help"></a></li>
+                            <li><a class="tm-icon-visit" target="_blank" href="/pagekit/index.php/" title="Visit Site"></a></li>
+                            <li><a class="tm-icon-logout" href="/pagekit/index.php/user/logout?redirect=admin/login" title="Logout"></a></li>
+                            <li class="uk-margin-small-left"><a href="/pagekit/index.php/admin/user/edit?id=1" title="Profile"><img class="uk-border-circle uk-margin-small-right" height="32" width="32" title="admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADGElEQVR4Xu1Za1faQBAdIBZBfIIVFVEEUeur//9PtCpFEHkqKFABH+GhPLqjZotoG9K64Zxk7jl82OwGdi6z984klm9HJz0wMSxEAGUAHQHSABNrIJAIkguQC5ALkAuQC5iYAbJBskGyQbJBskETm8BomqGxMQlmpiY57/VGE+R6YyT/w0hscH3VB1NTLh5wp9OF4+ipeQg42N0Ei8XyKuBU5hxu72TdSdA9A9xzM7Cy7H0TaIMdg/hZxvgEbIfXwW7/9BQopr7NZuVBH0cT7FpHVxJ0zQBJkmB3O8QDzOTysOZf5uPrSg3O81fGJQBTH4+Agu/HMdhiGTH+khHdbg+OfsSNS8D+This1ueUbzZbEEukweOeBd/SAg86e16Aau1WNxJ0OwKTrgkIBlZ4YPlCEcrX1afx170tfr3VeoCT05TxCNgIrsKE0/Eq/ZVBKOAHl8vJ56KxJDw8PupCgi4ZgJ6P3q/gXq7DWSrHx64JJ4TW/Xxcu7mFTK5gHAK8nz3gXfDwgDB4JKEfe1/C3BJ7vR4cRvQRQ10yAK0PLRDR7XaZ0r8te33MITx9DnHBNOLni0aITAXhBIzb7czqAqpeL0k2ViNs8HWoAagFoiGcgABrfKb7Gh9Mb/y8B8UilbnYaRqarZZQDoQT8F7jM2xE2BxhkyQSQgmYm50Gv2/xv/aP1aJICCWgv8zFIKLxJPRYufs3+FeWYLKvJrgslqFYuhbGgTACBkWtwUrfOCt91eBwjMNmaI0va7c7EDlJqN32z/PCCBi0tdzFJVSqN0NtFN0ACVSQSGaFPTITRkB/44OifxgZ/iwveudhYd7NCZDlBiRS2aHI07pICAF4hoOsvldwdy9DMj28mlutFtjf+V064/dgm4zt8kdDCAGDjc97pa9aIGGmA06mBwpK5QoUrkpqt2meF0LAwe4We+j5vJc/lb5qO8XiCYsoBe12m4nhmdptmueFEKB5FyO8gQig1+P0epxej3+8uY5Q1LT+NIkgiSCJIIkgiaBW5TTSenIBcgFyAXIBcgEjqbrWWMgFyAVM7gK/ALNqyhBG3wWzAAAAAElFTkSuQmCC"> <span>admin</span></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <nav class="uk-navbar tm-navbar uk-hidden-small">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active">
+                            <a href="/pagekit/index.php/admin/user">List</a>
+                        </li><li>
+                            <a href="/pagekit/index.php/admin/user/permissions">Permissions</a>
+                        </li><li>
+                            <a href="/pagekit/index.php/admin/user/roles">Roles</a>
+                        </li><li>
+                            <a href="/pagekit/index.php/admin/user/settings">Settings</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="tm-headerbar uk-flex uk-flex-space-between uk-flex-middle uk-visible-small">
+                    <a class="tm-icon-menu" href="#offcanvas" data-uk-offcanvas=""></a>
+
+                    <h1 class="tm-heading uk-h3">Users</h1>
+
+                    <a href="#offcanvas-flip" data-uk-offcanvas="">
+                        <img class="uk-border-circle" height="32" width="32" alt="admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADGElEQVR4Xu1Za1faQBAdIBZBfIIVFVEEUeur//9PtCpFEHkqKFABH+GhPLqjZotoG9K64Zxk7jl82OwGdi6z984klm9HJz0wMSxEAGUAHQHSABNrIJAIkguQC5ALkAuQC5iYAbJBskGyQbJBskETm8BomqGxMQlmpiY57/VGE+R6YyT/w0hscH3VB1NTLh5wp9OF4+ipeQg42N0Ei8XyKuBU5hxu72TdSdA9A9xzM7Cy7H0TaIMdg/hZxvgEbIfXwW7/9BQopr7NZuVBH0cT7FpHVxJ0zQBJkmB3O8QDzOTysOZf5uPrSg3O81fGJQBTH4+Agu/HMdhiGTH+khHdbg+OfsSNS8D+This1ueUbzZbEEukweOeBd/SAg86e16Aau1WNxJ0OwKTrgkIBlZ4YPlCEcrX1afx170tfr3VeoCT05TxCNgIrsKE0/Eq/ZVBKOAHl8vJ56KxJDw8PupCgi4ZgJ6P3q/gXq7DWSrHx64JJ4TW/Xxcu7mFTK5gHAK8nz3gXfDwgDB4JKEfe1/C3BJ7vR4cRvQRQ10yAK0PLRDR7XaZ0r8te33MITx9DnHBNOLni0aITAXhBIzb7czqAqpeL0k2ViNs8HWoAagFoiGcgABrfKb7Gh9Mb/y8B8UilbnYaRqarZZQDoQT8F7jM2xE2BxhkyQSQgmYm50Gv2/xv/aP1aJICCWgv8zFIKLxJPRYufs3+FeWYLKvJrgslqFYuhbGgTACBkWtwUrfOCt91eBwjMNmaI0va7c7EDlJqN32z/PCCBi0tdzFJVSqN0NtFN0ACVSQSGaFPTITRkB/44OifxgZ/iwveudhYd7NCZDlBiRS2aHI07pICAF4hoOsvldwdy9DMj28mlutFtjf+V064/dgm4zt8kdDCAGDjc97pa9aIGGmA06mBwpK5QoUrkpqt2meF0LAwe4We+j5vJc/lb5qO8XiCYsoBe12m4nhmdptmueFEKB5FyO8gQig1+P0epxej3+8uY5Q1LT+NIkgiSCJIIkgiaBW5TTSenIBcgFyAXIBcgEjqbrWWMgFyAVM7gK/ALNqyhBG3wWzAAAAAElFTkSuQmCC">
+                    </a>
+                </div>
+
+            </div>
+        </header>
+
+        <main class="tm-main uk-container uk-container-center">
+            
+<div id="users" class="uk-form">
+
+    <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin="">
+        <div class="uk-flex uk-flex-middle uk-flex-wrap" data-uk-margin="">
+
+            <h2 class="uk-margin-remove">1 User</h2>
+
+            
+
+            <div class="pk-search">
+                <div class="uk-search">
+                    <input class="uk-search-field" type="text">
+                </div>
+            </div>
+
+        </div>
+        <div data-uk-margin="">
+
+            <a class="uk-button uk-button-primary" href="/pagekit/index.php/admin/user/edit">Add User</a>
+
+        </div>
+    </div>
+
+    <div class="uk-overflow-container">
+        <table class="uk-table uk-table-hover uk-table-middle">
+            <thead>
+                <tr>
+                    <th class="pk-table-width-minimum"><input type="checkbox" number=""></th>
+                    <th colspan="2" class="pk-table-order uk-visible-hover-inline uk-active">
+                        User
+                    <i class="uk-icon-justify uk-margin-small-left pk-icon-arrow-down"></i></th>
+                    <th class="pk-table-width-100 uk-text-center">
+                        <div class="uk-form-select pk-filter">
+    <span>Status</span>
+    <select>
+        <option value="">Status</option>
+            <optgroup label="Filter by">
+                <option value="new">New</option><option value="0">Blocked</option><option value="1">Active</option>
+            </optgroup>
+            
+    </select>
+    
+</div>
+                    </th>
+                    <th class="pk-table-width-200 pk-table-order uk-visible-hover-inline">
+                        Email
+                    <i class="uk-icon-justify uk-margin-small-left pk-icon-arrow-down uk-invisible"></i></th>
+                    <th class="pk-table-width-100">
+                        <div class="uk-form-select pk-filter">
+    <span>Roles</span>
+    <select>
+        <option value="">Roles</option>
+            <optgroup label="Filter by">
+                <option value="3">Administrator</option>
+            </optgroup>
+            
+    </select>
+    
+</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="check-item">
+                    <td><input type="checkbox" name="id" value="1"></td>
+                    <td class="pk-table-width-minimum">
+                        <img class="uk-img-preserve uk-border-circle" width="40" height="40" alt="admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAD6UlEQVR4Xu2a6VYaQRCFC0FxFzW4QHAH9+T9nyLHlUUUJSqCuKAE2U2XETI9DBGpY0+fWPVzuu9If95eqnocP3bDz8DRNQEHA+ya3YuQAdL4MUAiPwbIAKkEiHpeAxkgkQBRzg5kgEQCRDk7kAESCRDl7EAGSCRAlLMDGSCRAFHODmSARAJEOTuQARIJEOXsQAZIJECUswP/R4AulxOcTqc0tFKpTBzqx8i1dOD2RkgA7JFGnDxPwe1d7mMoEN6qHcDhoUFYWZprGVKpXIFw9Jgw1I+RagcQ4SFEqzgUAMsCpE6hFUCHwwHft1bb8sk95CFxdq4TP73uhae9kzA7420Cqtfr0NPzdy18Fl/x7OxHGGA7AptrK9Db62o2X6TS4J+dlrpfpjKQyd5qA1GbKex298F6aEkCs3sQFRvKPAwO9DefVypVOIjEGaCZwMKcHzxjI83H1WoV9sPxl2fYZoxo/BSenopaQNTGgbh54CbSCDzz4dkPw9z2mC/AcSLJABsExj2jMB/wSUAisRMovmYfSwtfYXRkWGrf2Y/CM+4qNocWDlwLLkJ/v7tl+jYeDIi2VdHHGOlMFlLprM34NPjAEnPe7Y2gBOJKwLkywdlaDwLmyI2o1Wqwd3jEAP2+afBOjrfsvvW6PD19M1Mw5Z2Q+sVPkpD/VbAVou1T2Fw4wN0Vd1lzYHEB+xqjUChC7Li1r0qitgK0KhycJi/gPvdoycC8VmKnvcMY1Gp1lcykv2UrQHPhAHdV3F3bhdVunb25g/PL9OcDaFU4KFcqkEpdt4chjonm4w7my7sHsc8HcEoUDnyGwgGFQOLsAnIP1tOe8t5OtLZNYXPhoJMf265PsViCyFGC8oqutbYAdPeJwsGqXDjoegSvQsybMX9WHbYANBcOcNCYWXSamA0NDsDI8JDE6u4+B2c//+TOKsMWgObiAJbpsVzfaVhtQG/t4J2++739lAO0OopcXl1D5vrmXb89tCzqhMKJxrDj5k45QKvDcDeVFZzCy4sBCaAdN3dKAVoVDgoidYtZpG6d2PHbZki6M0FNOHoCpbK6S3ilAPF+w/tFLhz8K3V7C2LAPwOTEx6pm+qbO6UAsWxl/GSDuvC7XC7YWl+RAKq+uVMGEI8eQbHwG+PhMQ8np7R7XryIwgspY6i8uVMGcD4wC+OeMWmguPbhGkgJnMI4lY2hMjNRBpACSWctAyT+dxggAyQSIMrZgQyQSIAoZwcyQCIBopwdyACJBIhydiADJBIgytmBDJBIgChnBzJAIgGinB3IAIkEiHJ2IAMkEiDK2YEMkEiAKGcHMkAiAaKcHcgAiQSIcnYgEeBv3jM9nyWoo3gAAAAASUVORK5CYII=">
+                    </td>
+                    <td class="uk-text-nowrap">
+                        <a href="/pagekit/index.php/admin/user/edit?id=1">admin</a>
+                        <div class="uk-text-muted">admin</div>
+                    </td>
+                    <td class="uk-text-center">
+                        <a href="#" class="pk-icon-circle-success pk-icon-circle-primary"></a>
+                    </td>
+                    <td>
+                        <a href="mailto:asd@asd.com">asd@asd.com</a> 
+                    </td>
+                    <td>
+                        Administrator
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="uk-h1 uk-text-muted uk-text-center" style="display: none;">No user found.</h3>
+
+    <ul class="uk-pagination" style="display: none;"><li class="uk-active"><span>1</span></li></ul>
+
+</div>
+        </main>
+
+        <div class="uk-hidden"><div class="pk-system-messages"></div></div>
+
+        <div id="offcanvas" class="uk-offcanvas">
+            <div class="uk-offcanvas-bar">
+
+                <ul class="uk-nav uk-nav-offcanvas">
+                    <li class="uk-nav-header">Users</li>
+                    <li class="uk-active">
+                        <a href="/pagekit/index.php/admin/user">List</a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/user/permissions">Permissions</a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/user/roles">Roles</a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/user/settings">Settings</a>
+                    </li>
+                    <li class="uk-nav-divider"></li>
+                    <li class="uk-nav-header">Extensions</li>
+                    <li>
+                        <a href="/pagekit/index.php/admin/dashboard">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Dashboard" src="/pagekit/app/system/modules/dashboard/assets/images/icon-dashboard.svg"> Dashboard
+                        </a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/site/page">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Site" src="/pagekit/app/system/modules/site/assets/images/icon-site.svg"> Site
+                        </a>
+                    </li><li class="uk-active">
+                        <a href="/pagekit/index.php/admin/user">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Users" src="/pagekit/app/system/modules/user/assets/images/icon-users.svg"> Users
+                        </a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/system/settings">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="System" src="/pagekit/app/system/modules/settings/assets/images/icon-settings.svg"> System
+                        </a>
+                    </li><li>
+                        <a href="/pagekit/index.php/admin/system/marketplace/extensions">
+                            <img class="uk-margin-small-right" width="34" height="34" alt="Marketplace" src="/pagekit/app/installer/assets/images/icon-marketplace.svg"> Marketplace
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div id="offcanvas-flip" class="uk-offcanvas">
+            <div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
+
+                <ul class="uk-nav uk-nav-offcanvas">
+                    <li class="uk-nav-header">admin</li>
+                    <li><a target="_blank" href="/pagekit/index.php/">Visit Site</a></li>
+                    <li><a href="/pagekit/index.php/admin/user/edit?id=1">Settings</a></li>
+                    <li><a href="/pagekit/index.php/user/logout?redirect=admin/login">Logout</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+    
+
+</body></html>

@@ -1,0 +1,132 @@
+<html><head>
+	<link rel="stylesheet" type="text/css" href="/mantisbt/css/default.css">
+	<script type="text/javascript" language="JavaScript"><!--
+		if(document.layers) {document.write("<style>td{padding:0px;}<\/style>")}
+	// --></script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Pragma-directive" content="no-cache">
+	<meta http-equiv="Cache-Directive" content="no-cache">
+	<meta http-equiv="Expires" content="Tue, 20 Aug 2019 01:23:47 GMT">
+	<link rel="shortcut icon" href="/mantisbt/images/favicon.ico" type="image/x-icon">
+	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="http://192.168.99.101:3000/mantisbt/browser_search_plugin.php?type=text">	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="http://192.168.99.101:3000/mantisbt/browser_search_plugin.php?type=id">	<title>Manage Columns - MantisBT</title>
+<script type="text/javascript" src="/mantisbt/javascript/min/common.js"></script>
+<script language="javascript">var loading_lang = "Loading...";</script><script type="text/javascript" src="/mantisbt/javascript/min/ajax.js"></script>
+</head>
+<body>
+<div align="left"><a href="my_view_page.php"><img border="0" alt="Mantis Bug Tracker" src="/mantisbt/images/mantis_logo.gif"></a></div><table class="hide"><tbody><tr><td class="login-info-left">Logged in as: <span class="italic">administrator</span> <span class="small">(administrator)</span></td><td class="login-info-middle"><span class="italic">2019-08-20 01:23 UTC</span></td><td class="login-info-right"><form method="post" name="form_set_project" action="/mantisbt/set_project.php">Project: <select name="project_id" class="small" onchange="document.forms.form_set_project.submit();"><option value="0" selected="selected">All Projects</option>
+</select> <input type="submit" class="button-small" value="Switch"></form><a href="http://192.168.99.101:3000/mantisbt/issues_rss.php?username=administrator&amp;key=021c6555cf022731feb72e4a25ff20d9"><img src="/mantisbt/images/rss.png" alt="RSS" style="border-style: none; margin: 5px; vertical-align: middle;"></a></td></tr></tbody></table><table class="width100" cellspacing="0"><tbody><tr><td class="menu"><a href="/mantisbt/main_page.php">Main</a> | <a href="/mantisbt/my_view_page.php">My View</a> | <a href="/mantisbt/view_all_bug_page.php">View Issues</a> | <a href="/mantisbt/bug_report_page.php">Report Issue</a> | <a href="/mantisbt/changelog_page.php">Change Log</a> | <a href="/mantisbt/roadmap_page.php">Roadmap</a> | <a href="/mantisbt/summary_page.php">Summary</a> | <a href="/mantisbt/manage_overview_page.php">Manage</a> | <a href="/mantisbt/account_page.php">My Account</a> | <a href="/mantisbt/logout_page.php">Logout</a></td><td class="menu right nowrap"><form method="post" action="/mantisbt/jump_to_bug.php"><input type="text" name="bug_id" size="10" class="small" value="Issue #" onfocus="if (this.value == 'Issue #') this.value = ''" onblur="if (this.value == '') this.value = 'Issue #'">&nbsp;<input type="submit" class="button-small" value="Jump">&nbsp;</form></td></tr></tbody></table><br>
+<div align="center">
+<form name="report_bug_form" method="post" enctype="multipart/form-data" action="manage_config_columns_set.php">
+<input type="hidden" name="manage_config_columns_set_token" value="20190820988e8bd0bca630da24de41da236c8eaeaf1d317c"><table class="width50" cellspacing="1">
+
+<!-- Title -->
+<tbody><tr>
+	<td class="form-title">
+		<input type="hidden" name="project_id" value="0">
+		<input type="hidden" name="form_page" value="account">
+		Manage Columns	</td>
+	<td class="right">
+		<span class="bracket-link">[&nbsp;<a href="account_page.php">My Account</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="account_prefs_page.php">Preferences</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;Manage Columns&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/account_prof_menu_page.php">Profiles</a>&nbsp;]</span> 	</td>
+</tr>
+
+<!-- view issues columns -->
+<tr class="row-1">
+	<td class="category">
+		All Available Columns	</td>
+	<td>
+		<textarea tabindex="1" name="all_columns" readonly="readonly" cols="80" rows="5">id, project_id, reporter_id, handler_id, duplicate_id, priority, severity, reproducibility, status, resolution, category_id, date_submitted, last_updated, os, os_build, platform, version, fixed_in_version, target_version, view_state, summary, sponsorship_total, due_date, description, steps_to_reproduce, additional_information, attachment_count, bugnotes_count, selection, edit, overdue</textarea>
+	</td>
+</tr>
+
+<!-- view issues columns -->
+<tr class="row-2">
+	<td class="category">
+		View Issues Columns<span class="required">*</span>	</td>
+	<td>
+		<textarea tabindex="2" name="view_issues_columns" cols="80" rows="5">selection, edit, priority, id, sponsorship_total, bugnotes_count, category_id, severity, status, last_updated, summary</textarea>
+	</td>
+</tr>
+
+<!-- print issues columns -->
+<tr class="row-1">
+	<td class="category">
+		Print Issues Columns<span class="required">*</span>	</td>
+	<td>
+		<textarea tabindex="3" name="print_issues_columns" cols="80" rows="5">selection, priority, id, sponsorship_total, bugnotes_count, category_id, severity, status, last_updated, summary</textarea>
+	</td>
+</tr>
+
+<!-- csv columns -->
+<tr class="row-2">
+	<td class="category">
+		CSV Columns<span class="required">*</span>	</td>
+	<td>
+		<textarea tabindex="4" name="csv_columns" cols="80" rows="5">id, project_id, reporter_id, handler_id, priority, severity, reproducibility, version, category_id, date_submitted, os, os_build, platform, view_state, last_updated, summary, status, resolution, fixed_in_version</textarea>
+	</td>
+</tr>
+
+<!-- csv columns -->
+<tr class="row-1">
+	<td class="category">
+		Excel Columns<span class="required">*</span>	</td>
+	<td>
+		<textarea tabindex="5" name="excel_columns" cols="80" rows="5">id, project_id, reporter_id, handler_id, priority, severity, reproducibility, version, category_id, date_submitted, os, os_build, platform, view_state, last_updated, summary, status, resolution, fixed_in_version</textarea>
+	</td>
+</tr>
+
+<!-- Submit Button -->
+<tr>
+	<td class="left">
+		<span class="required"> * required</span>
+	</td>
+	<td class="center">
+				<input tabindex="6" type="submit" class="button" name="update_columns_as_my_default" value="Update Columns as Default for All Projects">
+			</td>
+</tr>
+
+</tbody></table>
+</form>
+</div>
+
+<div align="center">
+<form method="post" action="manage_columns_copy.php">
+<input type="hidden" name="manage_columns_copy_token" value="201908208798b4043a2116a8e897f518fd405614385b8ed4"><table class="width50" cellspacing="1">
+
+<!-- Copy Columns -->
+<tbody><tr>
+	<td class="left" colspan="3">
+			<input type="hidden" name="project_id" value="0">
+			<input type="hidden" name="manage_page" value="">
+
+			<select name="other_project_id">
+				<option value="0" selected="selected">All Projects</option>
+			</select>
+			<input type="submit" name="copy_from" class="button" value="Copy Columns From">
+			<input type="submit" name="copy_to" class="button" value="Copy Columns To">
+	</td>
+</tr>
+</tbody></table>
+</form>
+</div>
+
+<br>
+
+<!-- RESET CONFIGURATION -->
+<div class="border center">
+<!-- Reset Button -->
+	<form method="post" action="manage_config_columns_reset.php">
+		<input type="hidden" name="manage_config_columns_reset_token" value="201908203ace285b4e7ded0eba5ebbc19410b9dcb95b4d7b">		<input type="submit" class="button" value="Reset Columns Configuration">
+	</form>
+</div>
+	<br>
+	<hr size="1">
+<table border="0" width="100%" cellspacing="0" cellpadding="0"><tbody><tr valign="top"><td>	<address>Copyright © 2000 - 2010 MantisBT Group</address>
+	<address><a href="mailto:webmaster@example.com">webmaster@example.com</a></address>
+</td><td>
+	<div align="right"><a href="http://www.mantisbt.org" title="Free Web Based Bug Tracker"><img src="/mantisbt/images/mantis_logo_button.gif" width="88" height="35" alt="Powered by Mantis Bugtracker" border="0"></a></div>
+</td></tr></tbody></table>
+
+
+</body></html>

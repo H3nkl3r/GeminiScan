@@ -1,0 +1,85 @@
+<html><head>
+	<link rel="stylesheet" type="text/css" href="/mantisbt/css/default.css">
+	<script type="text/javascript" language="JavaScript"><!--
+		if(document.layers) {document.write("<style>td{padding:0px;}<\/style>")}
+	// --></script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Pragma-directive" content="no-cache">
+	<meta http-equiv="Cache-Directive" content="no-cache">
+	<meta http-equiv="Expires" content="Tue, 20 Aug 2019 01:27:20 GMT">
+	<link rel="shortcut icon" href="/mantisbt/images/favicon.ico" type="image/x-icon">
+	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="http://192.168.99.101:3000/mantisbt/browser_search_plugin.php?type=text">	<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="http://192.168.99.101:3000/mantisbt/browser_search_plugin.php?type=id">	<title>Manage Plugins - MantisBT</title>
+<script type="text/javascript" src="/mantisbt/javascript/min/common.js"></script>
+<script language="javascript">var loading_lang = "Loading...";</script><script type="text/javascript" src="/mantisbt/javascript/min/ajax.js"></script>
+</head>
+<body>
+<div align="left"><a href="my_view_page.php"><img border="0" alt="Mantis Bug Tracker" src="/mantisbt/images/mantis_logo.gif"></a></div><table class="hide"><tbody><tr><td class="login-info-left">Logged in as: <span class="italic">administrator</span> <span class="small">(administrator)</span></td><td class="login-info-middle"><span class="italic">2019-08-20 01:27 UTC</span></td><td class="login-info-right"><form method="post" name="form_set_project" action="/mantisbt/set_project.php">Project: <select name="project_id" class="small" onchange="document.forms.form_set_project.submit();"><option value="0" selected="selected">All Projects</option>
+</select> <input type="submit" class="button-small" value="Switch"></form><a href="http://192.168.99.101:3000/mantisbt/issues_rss.php?username=administrator&amp;key=021c6555cf022731feb72e4a25ff20d9"><img src="/mantisbt/images/rss.png" alt="RSS" style="border-style: none; margin: 5px; vertical-align: middle;"></a></td></tr></tbody></table><table class="width100" cellspacing="0"><tbody><tr><td class="menu"><a href="/mantisbt/main_page.php">Main</a> | <a href="/mantisbt/my_view_page.php">My View</a> | <a href="/mantisbt/view_all_bug_page.php">View Issues</a> | <a href="/mantisbt/bug_report_page.php">Report Issue</a> | <a href="/mantisbt/changelog_page.php">Change Log</a> | <a href="/mantisbt/roadmap_page.php">Roadmap</a> | <a href="/mantisbt/summary_page.php">Summary</a> | <a href="/mantisbt/manage_overview_page.php">Manage</a> | <a href="/mantisbt/account_page.php">My Account</a> | <a href="/mantisbt/logout_page.php">Logout</a></td><td class="menu right nowrap"><form method="post" action="/mantisbt/jump_to_bug.php"><input type="text" name="bug_id" size="10" class="small" value="Issue #" onfocus="if (this.value == 'Issue #') this.value = ''" onblur="if (this.value == '') this.value = 'Issue #'">&nbsp;<input type="submit" class="button-small" value="Jump">&nbsp;</form></td></tr></tbody></table><div align="center"><p><span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_user_page.php">Manage Users</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_proj_page.php">Manage Projects</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_tags_page.php">Manage Tags</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_custom_field_page.php">Manage Custom Fields</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/manage_prof_menu_page.php">Manage Global Profiles</a>&nbsp;]</span> <span class="bracket-link">[&nbsp;Manage Plugins&nbsp;]</span> <span class="bracket-link">[&nbsp;<a href="/mantisbt/adm_config_report.php">Manage Configuration</a>&nbsp;]</span> </p></div><br>
+<form action="manage_plugin_update.php" method="post">
+<input type="hidden" name="manage_plugin_update_token" value="201908206d180eaa86c823bf8ecb04e72957069193af0252"><table class="width100" cellspacing="1">
+
+<!-- Title -->
+<tbody><tr>
+	<td class="form-title" colspan="7">
+		Installed Plugins
+	</td>
+</tr>
+
+<!-- Info -->
+<tr class="row-category">
+	<td width="20%">Plugin</td>
+	<td width="35%">Description</td>
+	<td width="20%">Dependencies</td>
+	<td width="7%">Priority</td>
+	<td width="8%">Protected</td>
+	<td width="10%">Actions</td>
+</tr>
+
+<tr class="row-1"><td class="small center">MantisBT Core 1.2.0<input type="hidden" name="change_MantisCore" value="1"></td><td class="small">Core plugin API for the Mantis Bug Tracker.<br>Author: <a href="mailto:mantisbt-dev@lists.sourceforge.net">MantisBT Team</a><br>Website: <a href="http://www.mantisbt.org">http://www.mantisbt.org</a></td><td class="small center"><span class="small dependency_met">No dependencies</span></td><td>&nbsp;</td><td>&nbsp;</td><td class="center"></td></tr><tr class="row-2"><td class="small center"><a href="/mantisbt/plugin.php?page=MantisCoreFormatting/config">MantisBT Formatting 1.0a</a><input type="hidden" name="change_MantisCoreFormatting" value="1"></td><td class="small">Official text processing and formatting plugin.<br>Author: <a href="mailto:mantisbt-dev@lists.sourceforge.net">MantisBT Team</a><br>Website: <a href="http://www.mantisbt.org">http://www.mantisbt.org</a></td><td class="small center"><span class="small dependency_met">MantisBT Core 1.2.0</span></td><td class="center"><select name="priority_MantisCoreFormatting"><option value="5">5</option><option value="4">4</option><option value="3" selected="selected">3</option><option value="2">2</option><option value="1">1</option></select></td><td class="center"><input type="checkbox" name="protected_MantisCoreFormatting"></td><td class="center"><span class="bracket-link">[&nbsp;<a href="manage_plugin_uninstall.php?name=MantisCoreFormatting&amp;manage_plugin_uninstall_token=20190820bc186fbecdf2c061d9b6ce791e4c24defe6f4af3">Uninstall</a>&nbsp;]</span> </td></tr>
+<tr>
+	<td colspan="3"></td>
+	<td colspan="2" class="center"><input type="submit" value="Update"></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</form>
+<br>
+<table class="width100" cellspacing="1">
+
+<!-- Title -->
+<tbody><tr>
+	<td class="form-title" colspan="7">
+		Available Plugins
+	</td>
+</tr>
+
+<!-- Info -->
+<tr class="row-category">
+	<td width="25%">Plugin</td>
+	<td width="45%">Description</td>
+	<td width="20%">Dependencies</td>
+	<td width="10%">Actions</td>
+</tr>
+
+<tr class="row-1"><td class="small center">Import/Export issues 1.0</td><td class="small">Adds XML based import and export capabilities to MantisBT.<br>Author: <a href="mailto:mantisbt-dev@lists.sourceforge.net">MantisBT Team</a><br>Website: <a href="http://www.mantisbt.org">http://www.mantisbt.org</a></td><td class="center"><span class="small dependency_met">MantisBT Core 1.2.0</span></td><td class="center"><span class="bracket-link">[&nbsp;<a href="manage_plugin_install.php?name=XmlImportExport&amp;manage_plugin_install_token=2019082024a64e59ad27085598925fe85e7ad17d5e04d0c3">Install</a>&nbsp;]</span> </td></tr><tr class="row-2"><td class="small center">Mantis Graphs 1.0</td><td class="small">Official graph plugin.<br>Author: <a href="mailto:mantisbt-dev@lists.sourceforge.net">MantisBT Team</a><br>Website: <a href="http://www.mantisbt.org">http://www.mantisbt.org</a></td><td class="center"><span class="small dependency_met">MantisBT Core 1.2.0</span></td><td class="center"><span class="bracket-link">[&nbsp;<a href="manage_plugin_install.php?name=MantisGraph&amp;manage_plugin_install_token=2019082039d067eccb5be88994cb5342242139a3ce4982f5">Install</a>&nbsp;]</span> </td></tr>
+</tbody></table>
+
+<br>Key:
+<span class="dependency_met">plugin ready</span>,
+<span class="dependency_unmet">unmet dependencies</span>,
+<span class="dependency_dated">outdated dependencies</span>,
+<span class="dependency_upgrade">upgrade needed</span>.
+
+	<br>
+	<hr size="1">
+<table border="0" width="100%" cellspacing="0" cellpadding="0"><tbody><tr valign="top"><td>	<address>Copyright © 2000 - 2010 MantisBT Group</address>
+	<address><a href="mailto:webmaster@example.com">webmaster@example.com</a></address>
+</td><td>
+	<div align="right"><a href="http://www.mantisbt.org" title="Free Web Based Bug Tracker"><img src="/mantisbt/images/mantis_logo_button.gif" width="88" height="35" alt="Powered by Mantis Bugtracker" border="0"></a></div>
+</td></tr></tbody></table>
+
+
+</body></html>

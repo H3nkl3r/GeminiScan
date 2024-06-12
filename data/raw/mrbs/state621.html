@@ -1,0 +1,381 @@
+<html><head>
+  
+  <meta charset="utf-8">
+  <title>Meeting Room Booking System</title>
+  
+      <link href="jquery/ui/css/sunny/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css">
+    
+    <link href="jquery/datatables/css/mrbs-page.css" rel="stylesheet" type="text/css">
+    <link href="jquery/datatables/css/mrbs-table.css" rel="stylesheet" type="text/css">
+    <link href="jquery/datatables/css/ColReorder.css" rel="stylesheet" type="text/css">
+    <link href="jquery/datatables/css/ColVis.css" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="css/mrbs.css.php" type="text/css">
+        <link rel="stylesheet" media="print" href="css/mrbs-print.css.php" type="text/css">
+    <!--[if IE]>
+    <link rel="stylesheet" href="css/mrbs-ie.css" type="text/css">
+    <![endif]-->
+        <!--[if IE 8]>
+    <link rel="stylesheet" href="css/mrbs-ie8.css" type="text/css">
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/mrbs-ielte8.css" type="text/css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" href="css/mrbs-ielte7.css.php" type="text/css">
+    <![endif]-->
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" href="css/mrbs-ielte6.css" type="text/css">
+    <![endif]-->
+    
+    <meta name="robots" content="noindex">
+    
+<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jquery/ui/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript" src="jquery/ui/jquery-ui-i18n.js"></script>
+<script type="text/javascript" src="jquery/ui/jquery-ui-datepicker-en.js"></script>
+<script type="text/javascript" src="jquery/ui/jquery-ui-datepicker-en-US.js"></script>
+     
+<script type="text/javascript">
+  //<![CDATA[
+  var lteIE6 = false;
+  //]]>
+</script>
+<!--[if lte IE 6]>
+<script type="text/javascript">
+  //<![CDATA[
+  var lteIE6 = true;
+  //]]>
+</script>
+<![endif]-->
+    
+<script type="text/javascript">
+  //<![CDATA[
+  var lteIE7 = false;
+  //]]>
+</script>
+<!--[if lte IE 7]>
+<script type="text/javascript">
+  //<![CDATA[
+  var lteIE7 = true;
+  //]]>
+</script>
+<![endif]-->
+    
+<script type="text/javascript">
+  //<![CDATA[
+  var lteIE8 = false;
+  //]]>
+</script>
+<!--[if lte IE 8]>
+<script type="text/javascript">
+  //<![CDATA[
+  var lteIE8 = true;
+  //]]>
+</script>
+<![endif]-->
+    
+<script type="text/javascript">
+  //<![CDATA[
+    function init(params)
+  {
+  }
+  //]]>
+</script>
+    
+  <script type="text/javascript" src="jquery/datatables/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="jquery/datatables/js/ColReorder.min.js"></script>
+    <script type="text/javascript" src="jquery/datatables/js/ColVis.mrbs.min.js"></script>
+    <script type="text/javascript" src="jquery/datatables/js/FixedColumns.mrbs.js"></script>
+  <script type="text/javascript" src="jquery/datatables/js/plugins.js"></script>
+      
+  <script type="text/javascript" src="js/datatables.js.php?area=1"></script>
+
+    <script type="text/javascript" src="js/admin.js.php?area=1"></script>
+  <script type="text/javascript" src="js/functions.js.php?area=1"></script>
+<script type="text/javascript" src="js/datepicker.js.php?area=1"></script>
+<script type="text/javascript" src="js/general.js.php?area=1"></script>
+    
+<script type="text/javascript">
+
+//<![CDATA[
+
+
+
+
+
+$(window).load(function() {
+
+  var args = {day: '18',
+              month: '8',
+              year: '2019',
+              area: '1',
+              room: '1',
+              page: 'admin'};
+    init(args);
+
+});
+
+
+//]]>
+</script>  
+  </head>
+  
+  <body class="admin js">
+    <script type="text/javascript">
+      //<![CDATA[
+      $('body').addClass('js').removeClass('non_js');
+      //]]>
+    </script> 
+
+    <div class="screenonly">
+
+
+  <table id="banner">
+    <tbody><tr>
+      <td id="company">
+        <div>
+          <div id="logo">
+<span>Your Company</span>
+</div>
+          <div id="mrbs">
+            <a href="index.php">Meeting Room Booking System</a>
+          </div>
+        </div>
+      </td>
+      <td>
+        <form action="day.php" method="get" id="Form1">
+          <div>
+            <span id="dateselector"><input class="date hasDatepicker" type="text" id="datepicker">
+<input type="hidden" id="datepicker_alt" name="_alt" value="2019-8-18" disabled="disabled">
+<input type="hidden" id="datepicker_alt_day" name="day" value="18">
+<input type="hidden" id="datepicker_alt_month" name="month" value="8">
+<input type="hidden" id="datepicker_alt_year" name="year" value="2019">
+</span>
+  <script type="text/javascript">
+
+  $(function() {
+    $("#datepicker").datepicker({yearRange: '2014:2024',
+                                                       altField: '#datepicker_alt'
+                                                       , onClose: function(dateText, inst) {datepicker_close(dateText, inst, 'Form1');}                                                      });
+        var initial_date = new Date(2019, 7, 18);
+    var dateFormat = $("#datepicker").datepicker( "option", "dateFormat" );
+    document.getElementById('datepicker').value = $.datepicker.formatDate(dateFormat, initial_date);
+    document.getElementById('datepicker_alt_day').value = 18;
+    document.getElementById('datepicker_alt_month').value = 8;
+    document.getElementById('datepicker_alt_year').value = 2019;
+    $(".ui-datepicker").draggable();
+  });
+ 
+  
+  var dateselector = document.getElementById('dateselector');
+  var datepicker_html = '<input class="date" type="text" id="datepicker">\n';
+    datepicker_html += '<input type="hidden" id="datepicker_alt"'
+  datepicker_html += ' name="_alt"';
+  datepicker_html += ' value="2019-8-18"';
+  datepicker_html += ' disabled="disabled">\n';
+    datepicker_html += '<input type="hidden" id="datepicker_alt_day" name="day">\n';
+  datepicker_html += '<input type="hidden" id="datepicker_alt_month" name="month">\n';
+  datepicker_html += '<input type="hidden" id="datepicker_alt_year" name="year">\n';
+  dateselector.innerHTML = datepicker_html;
+  
+  </script>
+  <input type="hidden" name="area" value="1">
+<input type="hidden" name="room" value="1">
+<input type="submit" value="goto">
+           </div>
+        </form>
+              </td>
+      <td>
+<a href="help.php?day=18&amp;month=8&amp;year=2019&amp;area=1&amp;room=1">Help</a>
+</td>
+<td>
+<a href="admin.php?day=18&amp;month=8&amp;year=2019&amp;area=1&amp;room=1">Rooms</a>
+</td>
+<td>
+<a href="report.php?day=18&amp;month=8&amp;year=2019&amp;area=1&amp;room=1">Report</a>
+</td>
+      
+      <td>
+        <form id="header_search" method="get" action="search.php">
+          <div>
+            <a href="search.php?advanced=1">Search:</a>
+            <input type="search" name="search_str" value="" required="">
+            <input type="hidden" name="day" value="18">
+            <input type="hidden" name="month" value="8">
+            <input type="hidden" name="year" value="2019">
+            <input type="hidden" name="area" value="1">
+<input type="hidden" name="room" value="1">
+          </div>
+        <input type="hidden" name="datatable" value="1"></form>
+      </td>
+      <td>
+<div id="logon_box">
+
+                <a href="report.php?from_day=18&amp;from_month=8&amp;from_year=2019&amp;to_day=1&amp;to_month=12&amp;to_year=2030&amp;areamatch=&amp;roommatch=&amp;namematch=&amp;descrmatch=&amp;summarize=1&amp;sortby=r&amp;display=d&amp;sumby=d&amp;creatormatch=administrator" title="Click to display all my upcoming entries">You are administrator</a>
+                <form method="post" action="admin.php">
+                  <div>
+                    <input type="hidden" name="TargetURL" value="admin.php?day=18&amp;month=8&amp;year=2019&amp;area=1&amp;room=1">
+                    <input type="hidden" name="Action" value="SetName">
+                    <input type="hidden" name="NewUserName" value="">
+                    <input type="hidden" name="NewUserPassword" value="">
+                    <input type="submit" value=" Log Off ">
+                  </div>
+                </form>
+</div>
+</td>
+    </tr>
+  </tbody></table>
+</div>
+
+<div id="contents">
+<h2>Room Details</h2>
+<div id="area_form">
+<form id="areaChangeForm" method="get" action="/mrbs/web/admin.php">
+<fieldset>
+<legend></legend>
+<label id="area_label" for="area_select">Area:</label>
+<select class="room_area_select" id="area_select" name="area" onchange="this.form.submit()"><optgroup label="Enabled">
+<option selected="selected" value="1">Building 1</option><option value="2">Building 2</option></optgroup>
+</select>
+<input type="hidden" name="day" value="18">
+<input type="hidden" name="month" value="8">
+<input type="hidden" name="year" value="2019">
+<input type="submit" name="change" class="js_none" value="Change">
+<input type="image" class="button" name="edit" src="images/edit.png" title="Edit" alt="Edit">
+<input type="image" class="button" name="delete" src="images/delete.png" title="Delete" alt="Delete">
+</fieldset>
+</form>
+  <form id="add_area" class="form_admin" action="add.php" method="post">
+    <fieldset>
+    <legend>Add Area</legend>
+        
+      <input type="hidden" name="type" value="area">
+
+      <div>
+        <label for="area_name">Name:</label>
+        <input type="text" id="area_name" name="name" maxlength="30">
+      </div>
+          
+      <div>
+        <input type="submit" class="submit" value="Add Area">
+      </div>
+
+    </fieldset>
+  </form>
+  </div><div id="custom_html">
+</div>
+<h2>
+Rooms in Building 1</h2>
+<div id="room_form">
+<div id="room_info" class="datatable_container" style="visibility: visible;">
+<div class="dataTables_wrapper" id="rooms_table_wrapper"><div class="ColVis TableTools"><button class="ColVis_Button TableTools_Button ColVis_MasterButton"><span>Show / hide columns</span></button></div><div class="clear"></div><div id="rooms_table_length" class="dataTables_length"><label>Show <select size="1" name="rooms_table_length"><option value="10">10</option><option value="25" selected="selected">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div class="dataTables_filter" id="rooms_table_filter"><label>Search: <input type="text"></label></div><div id="rooms_table_processing" class="dataTables_processing" style="visibility: hidden;">Processing...</div><div class="DTFC_ScrollWrapper" style="position: relative; clear: both; height: 62px;"><div class="DTFC_RightWrapper" style="position: absolute; top: 0px; left: 1093px; width: 40px; height: 62px;"><div class="DTFC_RightHeadWrapper" style="position:relative; top:0; left:0; overflow:hidden;"><table class="admin_table display DTFC_Cloned" style="margin-left: 0px; width: 100%;"><thead><tr style="height: 32px;"><th class="sorting" rowspan="1" colspan="1" style="width: 23px;">&nbsp;</th></tr></thead></table></div><div class="DTFC_RightBodyWrapper" style="position: relative; top: 0px; left: 0px; overflow: hidden; height: 29px;"><table class="admin_table display DTFC_Cloned" style="margin-left: 0px; width: 100%; padding-bottom: 15px; margin-bottom: 30px;"><thead>
+<tr style="height: 0px;"></tr>
+</thead>
+
+
+<tbody><tr class="odd DTFC_NoData" style="height: 28px;"><td valign="top" colspan="4" class="dataTables_empty"></td></tr></tbody></table></div><div class="DTFC_RightFootWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div></div><div class="DTFC_LeftWrapper" style="position: absolute; top: 0px; left: 0px; width: 225px; height: 62px;"><div class="DTFC_LeftHeadWrapper" style="position:relative; top:0; left:0; overflow:hidden;"><table class="admin_table display DTFC_Cloned" style="margin-left: 0px; width: 100%;"><thead><tr style="height: 32px;"><th class="sorting_asc" rowspan="1" colspan="1" style="width: 208px;">Name</th></tr></thead></table></div><div class="DTFC_LeftBodyWrapper" style="position: relative; top: 0px; left: 0px; overflow: hidden; height: 29px;"><table class="admin_table display DTFC_Cloned" style="margin-left: 0px; width: 100%; padding-bottom: 15px; margin-bottom: 30px;"><thead>
+<tr style="height: 0px;"></tr>
+</thead>
+
+
+<tbody><tr class="odd DTFC_NoData" style="height: 28px;"><td valign="top" colspan="4" class="dataTables_empty"></td></tr></tbody></table></div><div class="DTFC_LeftFootWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div></div><div class="dataTables_scroll" style="position: absolute; top: 0px; left: 225px; width: 868px;"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;"><div class="dataTables_scrollHeadInner" style="width: 882px;"><table class="admin_table display" style="margin-left: 0px; width: 867px;"><thead>
+<tr style="height: 32px;"><th class="sorting" rowspan="1" colspan="1" style="width: 139px;">Enabled</th><th class="sorting" rowspan="1" colspan="1" style="width: 180px;">Description</th><th class="sorting" rowspan="1" colspan="1" style="width: 149px;">Capacity</th><th class="sorting" rowspan="1" colspan="1" style="width: 266px;">Room admin email</th></tr>
+</thead></table></div></div><div class="dataTables_scrollBody" style="overflow: auto; width: 100%;"><table id="rooms_table" class="admin_table display" style="margin-left: 0px; width: 867px;"><thead>
+<tr style="height: 0px;"><th class="sorting" rowspan="1" colspan="1" style="width: 139px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="sorting" rowspan="1" colspan="1" style="width: 180px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="sorting" rowspan="1" colspan="1" style="width: 149px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th><th class="sorting" rowspan="1" colspan="1" style="width: 266px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"></th></tr>
+</thead>
+
+
+<tbody><tr class="odd" style="height: 28px;"><td valign="top" colspan="4" class="dataTables_empty">No matching records found</td></tr></tbody></table></div></div></div><div class="dataTables_info" id="rooms_table_info">Showing 0 to 0 of 0 entries (filtered from 4 total entries)</div><div class="dataTables_paginate paging_full_numbers" id="rooms_table_paginate"><span class="first paginate_button paginate_button_disabled" id="rooms_table_first">First</span><span class="previous paginate_button paginate_button_disabled" id="rooms_table_previous">Previous</span><span></span><span class="next paginate_button paginate_button_disabled" id="rooms_table_next">Next</span><span class="last paginate_button paginate_button_disabled" id="rooms_table_last">Last</span></div></div>
+</div>
+    <form id="add_room" class="form_admin" action="add.php" method="post">
+      <fieldset>
+      <legend>Add Room</legend>
+        
+        <input type="hidden" name="type" value="room">
+        <input type="hidden" name="area" value="1">
+        
+        <div>
+          <label for="room_name">Name:</label>
+          <input type="text" id="room_name" name="name" maxlength="25">
+        </div>
+        
+        <div>
+          <label for="room_description">Description:</label>
+          <input type="text" id="room_description" name="description" maxlength="60">
+        </div>
+        
+        <div>
+          <label for="room_capacity">Capacity:</label>
+          <input type="text" id="room_capacity" name="capacity">
+        </div>
+       
+        <div>
+          <input type="submit" class="submit" value="Add Room">
+        </div>
+        
+      </fieldset>
+    </form>
+  </div>
+</div><div class="screenonly trailer" id="trailer">
+<div id="viewday">
+<div class="trailer_label">
+<a href="day.php?year=2019&amp;month=8&amp;day=18&amp;area=1&amp;room=1">View Day:</a>
+</div>
+<div class="trailer_links">
+<span><a href="day.php?year=2019&amp;month=08&amp;day=12&amp;area=1&amp;room=1">Aug 12</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=13&amp;area=1&amp;room=1">Aug 13</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=14&amp;area=1&amp;room=1">Aug 14</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=15&amp;area=1&amp;room=1">Aug 15</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=16&amp;area=1&amp;room=1">Aug 16</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=17&amp;area=1&amp;room=1">Aug 17</a></span>
+ | <span class="current">[ <a href="day.php?year=2019&amp;month=08&amp;day=18&amp;area=1&amp;room=1">Aug 18</a> ]</span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=19&amp;area=1&amp;room=1">Aug 19</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=20&amp;area=1&amp;room=1">Aug 20</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=21&amp;area=1&amp;room=1">Aug 21</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=22&amp;area=1&amp;room=1">Aug 22</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=23&amp;area=1&amp;room=1">Aug 23</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=24&amp;area=1&amp;room=1">Aug 24</a></span>
+ | <span><a href="day.php?year=2019&amp;month=08&amp;day=25&amp;area=1&amp;room=1">Aug 25</a></span>
+</div>
+</div>
+<div id="viewweek">
+<div class="trailer_label">
+<a href="week.php?year=2019&amp;month=8&amp;day=18&amp;area=1&amp;room=1">View Week:</a>
+</div>
+<div class="trailer_links">
+  <a href="week.php?year=2019&amp;month=07&amp;day=21&amp;area=1&amp;room=1">Jul 21</a>
+ |   <a href="week.php?year=2019&amp;month=07&amp;day=28&amp;area=1&amp;room=1">Jul 28</a>
+ |   <a href="week.php?year=2019&amp;month=08&amp;day=04&amp;area=1&amp;room=1">Aug 04</a>
+ |   <a href="week.php?year=2019&amp;month=08&amp;day=11&amp;area=1&amp;room=1">Aug 11</a>
+ | <span class="current">
+[   <a href="week.php?year=2019&amp;month=08&amp;day=18&amp;area=1&amp;room=1">Aug 18</a>
+]</span>
+ |   <a href="week.php?year=2019&amp;month=08&amp;day=25&amp;area=1&amp;room=1">Aug 25</a>
+ |   <a href="week.php?year=2019&amp;month=09&amp;day=01&amp;area=1&amp;room=1">Sep 01</a>
+ |   <a href="week.php?year=2019&amp;month=09&amp;day=08&amp;area=1&amp;room=1">Sep 08</a>
+ |   <a href="week.php?year=2019&amp;month=09&amp;day=15&amp;area=1&amp;room=1">Sep 15</a>
+</div>
+</div>
+<div id="viewmonth">
+<div class="trailer_label">
+<a href="month.php?year=2019&amp;month=8&amp;day=18&amp;area=1&amp;room=1">View Month:</a>
+</div>
+<div class="trailer_links">
+  <a href="month.php?year=2019&amp;month=06&amp;day=18&amp;area=1&amp;room=1">Jun 2019</a>
+ |   <a href="month.php?year=2019&amp;month=07&amp;day=18&amp;area=1&amp;room=1">Jul 2019</a>
+ | <span class="current">
+[   <a href="month.php?year=2019&amp;month=08&amp;day=18&amp;area=1&amp;room=1">Aug 2019</a>
+]</span>
+ |   <a href="month.php?year=2019&amp;month=09&amp;day=18&amp;area=1&amp;room=1">Sep 2019</a>
+ |   <a href="month.php?year=2019&amp;month=10&amp;day=18&amp;area=1&amp;room=1">Oct 2019</a>
+ |   <a href="month.php?year=2019&amp;month=11&amp;day=18&amp;area=1&amp;room=1">Nov 2019</a>
+ |   <a href="month.php?year=2019&amp;month=12&amp;day=18&amp;area=1&amp;room=1">Dec 2019</a>
+ |   <a href="month.php?year=2020&amp;month=01&amp;day=18&amp;area=1&amp;room=1">Jan 2020</a>
+ |   <a href="month.php?year=2020&amp;month=02&amp;day=18&amp;area=1&amp;room=1">Feb 2020</a>
+</div>
+</div>
+</div>
+  
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-draggable" style="position: relative;"></div></body></html>

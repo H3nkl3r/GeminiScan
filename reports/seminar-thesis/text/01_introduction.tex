@@ -1,96 +1,28 @@
 \section{Introduction}
 \label{sec:intro}
-The titles of theses at TUM have to follow specific guidelines.
-Find more information under this link:
-\url{https://www.tum.de/fileadmin/w00bfo/www/Studium/Dokumente/Pruefungsangelegenheiten/The_Use_of_English_in_Thesis_Titles_at_TUM.pdf}
 
-\subsection{Motivation}
-\label{subsec:motivation}
+In today's digital age, web applications are ubiquitous, playing a crucial role in daily activities ranging from streaming entertainment on platforms like Netflix to online grocery shopping and managing personal finances. The reliability and performance of these applications are important; failures can lead to anything from minor inconveniences to significant business disruptions and financial losses. Consequently, rigorous testing of web applications is essential to ensure their quality and functionality \cite{ricca_chapter_2019}.
 
-Please note that the first paragraph of a section or subsection is not indented.
-The first paragraph that follows a table, figure, equation etc.
-does not need an indent, either.\footnote{Here is a sample footnote with a URL: \url{http://google.com}}
+Testing strategies for web applications are structured within the concept of a test pyramid \cite{cohn_forgotten_nodate}, containing various testing levels. While unit and integration test levels focus on individual components or assemblies, end-to-end (E2E) testing simulates user interactions with the application, comprehensively evaluating its behaviour. Despite being labour-intensive, E2E testing is invaluable for identifying issues that actual users might encounter \cite{ricca_chapter_2019}. Manual testing, however, is prone to errors and both time and cost-intensive, leading to the development and adoption of automated testing tools \cite{holmes_automating_2006}. 
 
-Subsequent paragraphs, however, are indented.
+Modern web applications often undergo frequent updates and short release cycles, necessitating continuous integration and continuous deployment (CI/CD) practices \cite{gupta_prevalence_2022}. Maintaining a test suite for such an app can be costly, as even minor app changes can break many tests \cite{christophe_prevalence_2014}. For instance, an Accenture study found that small UI changes can affect 30–70\% of tests \cite{grechanik_maintaining_2009}. In some companies, this leads to discarding existing test suites if test suite maintenance costs exceed the business value. Instead, errors are detected through monitoring. However, solving errors only after detecting them comes at the expense of reliability \cite{colin_zalando_2024}. Consequently, this accelerates the need for robust test automation that can adapt to changes quickly and efficiently \cite{grechanik_maintaining_2009}. Effective test cases are important, yet creating a comprehensive and concise test model remains challenging. Typically, these models are graph-based, consisting of nodes representing states created by user actions and edges representing transitions between states.
 
-\subsubsection{Sample Heading (Third Level)} Only two levels of
-headings should be numbered.
-Lower level headings remain unnumbered; they are formatted as run-in headings.
+To reduce the cost and effort of testing while enhancing quality, web crawlers are employed to dynamically explore and model web pages \cite{stocco_neural_2023}. These crawlers, originally designed for information retrieval by search engines, can be repurposed to capture the entire state of a web page for testing purposes. Starting from an initial page, every interaction that opens a new state is captured to create a model of the web app \cite{yandrapally_near-duplicate_2020}. However, the presence of clones and near-duplicates complicates this process. Clones are exact copies, while near-duplicates are pages with minor differences, such as product pages on e-commerce sites that are functionally identical but feature different products. To create a minimal yet complete model, crawlers have adopted state abstraction functions, which allow them to identify and filter out near-duplicates. While this is challenging, it is essential for ensuring effective models \cite{yandrapally_near-duplicate_2020}. Ineffective models lead to redundant tests or gaps in coverage due to budget constraints.
 
-\paragraph{Sample Heading (Fourth Level)}
-The contribution should contain no more than four levels of headings. 
-Table~\ref{tab:tab1} gives a summary of different text styles.
+Recent advancements offer multiple approaches to address this issue. Techniques such as neural embeddings (doc2vec) \cite{stocco_neural_2023}, tree kernels \cite{corazza_web_2021}, and page fragment-based methods \cite{yandrapally_fragment-based_2023} are promising. Also, the emergence of transformer models \cite{vaswani_attention_2017} and breakthroughs in \ac{nlp} have enabled the development of large language models (\acp{llm}) with a near-human-level understanding of text, including code and markup languages \cite{touvron_llama_2023}. 
+Widespread adoption of \ac{llm}-powered coding assistants such as GitHub Copilot with over 1.3 million paying users \cite{noauthor_ms_nodate} prove that there is significant potential in applying \acp{llm} to enhance web test automation.
 
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab:tab1}
-\centering
-\begin{tabular}{|l|l|l|}
-\hline
-First col &  Second col & Third col\\
-\hline
-Normal & \textbf{Bold} & \textit{Italique}\\
-\texttt{Typewriter} & \textsc{small caps} & \underline{underline}\\
-\hline
-\end{tabular}
-\end{table}
+Therefore, this paper explores the potential of leveraging \acp{llm} to address the problem of near-duplicate detection in web testing. In particular, we use one small-scale \ac{llm} for the classification task and one big-scale \ac{llm} to improve the prompt. This subdivision was made to benefit from both lower resource consumption and high language understanding capabilities.
 
+In this study, we aim to answer the following research questions:
+\begin{quote}
+    \label{quote:RQ1}
+    \emph{RQ1. How effectively is our approach distinguishing near-duplicate from distinct web app states?}
+\end{quote}
 
-\noindent Displayed equations are centered and set on a separate
-line.
-\begin{equation}
-x + y = z\label{eq:equation}
-\end{equation}
-Please try to avoid rasterized images for line-art diagrams and schemas. 
-Whenever possible, use vector graphics instead (see Fig.~\ref{fig:fig1}).
+\begin{quote}
+    \label{quote:RQ2}
+    \emph{RQ2. How does our \ac{llm}-based approach compare to existing methods regarding effectiveness?}
+\end{quote}
 
-\begin{figure}
-\includegraphics[width=\textwidth]{figures/fig1}
-\caption{A figure caption is always placed below the illustration.
-Please note that short captions are centered, while long ones are justified by the macro package automatically. The text within graphics should be readable in the printed version.} 
-\label{fig:fig1}
-\end{figure}
-
-\begin{theorem}
-This is a sample theorem. 
-The run-in heading is set in bold, while the following text appears in italics. 
-Definitions, lemmas, propositions, and corollaries are styled the same way.
-\end{theorem}
-%
-% the environments 'definition', 'lemma', 'proposition', 'corollary',
-% 'remark', and 'example' are defined in the LLNCS documentclass as well.
-%
-\begin{proof}
-Proofs, examples, and remarks have the initial word in italics, while the following text appears in normal font.
-\end{proof}
-For citations of references, we prefer the use of square brackets and consecutive numbers. 
-Citations using labels or the author/year convention are also acceptable. 
-The following bibliography provides a sample reference list with entries for journal articles~\cite{Stol2016}, a book~\cite{Myers2012}, conference proceedings~\cite{Harrold1988}, and a web site~\cite{Schaffer2018}.
-
-\subsection{Abbreviations}
-\label{subsec:abbrev}
-
-To use acronyms in the document, simple declare them in the main.tex file and use them later.
-For example, you might want to define \acp{rq}, which will then be always abbreviated as \ac{rq} for singular or \acp{rq} for plural.
-
-List are also really easy to create:
-
-\begin{itemize}
-  \item One entry in the list
-  \item Another entry in the list
-\end{itemize}
-
-\begin{enumerate}
-  \item The labels consists of sequential numbers.
-  \item The numbers starts at 1 with every call to the enumerate environment.
-\end{enumerate}
-
-\subsection{Code Listings}
-\label{subsec:code}
-
-Listings can either be created inside the text or imported:\footnote{See \url{https://www.overleaf.com/learn/latex/Code_listing} for a complete example.}
-\begin{lstlisting}[language=C,label={lst:lstlisting}]
-int main(int argc, char* argv[]) {
-  return 0;
-}
-\end{lstlisting}
+Our research investigates this potential by evaluating our approach on a commonly used dataset, demonstrating that it not only approaches the current state of the art but also surpasses other methods while achieving high generalization. Our model shows strong performance in identifying distinct pages. Furthermore, it can find almost all near-duplicates but still suffers from misclassified distinct pages as near-duplicates. The findings suggest further potential for improvement, especially given the rapid advancements in \ac{llm} research. At the moment, a challenge is the high resource consumption. Our main contribution is a novel \ac{llm}-based approach that leverages the strengths of both small and large-scale models to achieve near state-of-the-art performance in near-duplicate detection for web testing.

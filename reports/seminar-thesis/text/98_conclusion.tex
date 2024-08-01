@@ -1,7 +1,8 @@
 \section{Conclusion}
-\label{sec:conclusion}
-
-You can also reference other parts of the document, e.g., sections or subsections.
-In Section~\ref{sec:intro} we briefly introduced something, whereas in Subsection~\ref{subsec:motivation}, we motivated something else.
-
-Make sure to capitalize chapters, sections or subsections when referencing them.
+    \label{sec:conclusion}
+    
+    This paper introduced GeminiScan, a novel LLM-based approach to near-duplicate detection in web testing. By combining a small-scale LLM for efficient inference with a large-scale LLM for prompt optimization, our method addresses challenges in semantic understanding and generalization.
+    
+    Evaluation of the Addressbook and PetClinic applications from the Yandrapally et al. 2020 dataset demonstrated competitive performance, with F1 scores of 0.87 and 0.78, respectively. Furthermore, GeminiScan outperforms traditional methods like RTED and approaches the effectiveness of state-of-the-art techniques such as WebEmbed and FragGen. Key strengths include strong performance in identifying distinct pages, effective near-duplicate detection, and a low false positive rate. While computational requirements present a challenge, our automated feedback loop for prompt optimization showcases the potential for continuous improvement. Future work could focus on expanding the evaluation to more diverse web applications, reducing computational requirements, and further improving classification accuracy.
+    
+    GeminiScan represents a significant step in applying advanced \ac{nlp} techniques to web testing, opening new opportunities for research in software quality assurance. As LLM technology rapidly advances, we anticipate further improvements in the efficiency and effectiveness of near-duplicate detection in web testing. This could possibly lead to the replacement of manual test creation in the future.

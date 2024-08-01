@@ -1,0 +1,44 @@
+\section{Discussion}
+
+    Our approach to near-duplicate web page classification using Large Language Models (LLMs) demonstrates promising performance, albeit not surpassing current state-of-the-art methods. However, our method offers significant benefits and potential for future improvements.
+    
+    \subsection{Strengths and Applicability}
+        A key strength of our approach lies in its generalizability. The model's classification is solely based on input data without relying on pre-trained, application-specific features. This characteristic enhances the method's applicability across diverse web applications. While we used page pairs from the same dataset for prompt improvement, the resulting prompt remains general and not specific to the applications used in this study.
+        Unlike other approaches that require extensive labelled training data, our method can be applied directly without preliminary data labelling. This significantly lowers the entry barrier for users, albeit at the cost of slightly lower precision and recall compared to specialized, data-intensive methods.
+        
+    \subsection{Interpretability and Explainability}
+        One notable advantage of using \acp{llm} is the human-readable output, which enhances interpretability and explainability. The model provides reasoning for its decisions, allowing for better understanding and potential improvements in task description.
+        Notably, this reasoning has revealed that current definitions in research are often too simplistic. The \ac{llm} identifies numerous ways to argue for alternative classifications, highlighting the considerable interpretative range within existing definitions. This insight underscores the need for more nuanced and comprehensive definitions in near-duplicate detection research. Still, the underlying mechanism of \acp{llm} on calculating the output remains a black box.
+        
+    \subsection{Performance Analysis}
+        Our model successfully identifies distinct pages and accurately detects near-duplicates. This capability is crucial for creating comprehensive and efficient test suites, avoiding redundant test cases while ensuring coverage of unique scenarios.
+        However, we observed many false negatives where distinct pages were misclassified as near-duplicates. This tendency to err on the side of caution by flagging more pages as potential near-duplicates presents a double-edged sword:
+        \begin{itemize}
+        \item It helps avoid duplicate tests, saving time and resources.
+        \item It risks missing unique cases that should be tested separately, potentially compromising test suite completeness.
+        \end{itemize}
+        Notably, the model rarely misclassifies near-duplicates as distinct, which is beneficial for maintaining an efficient test suite without unnecessary redundancy. We have looked at the wrongly classified examples and often concluded that these are hard-to-decide edge cases, for instance, an address book with zero entries vs ten entries.
+        
+    \subsection{Open Challenges}
+        Several open challenges in our study present opportunities for future research:
+        \begin{itemize}
+            \item \textbf{Resource Constraints:} Due to limited resources, we could not further optimize the prompt through additional feedback loop iterations. Extended resources could allow for more iterations and exploration of different optimization paths. Moreover, resource usage is an overall challenge as \acp{llm} requires much more resources than other approaches.
+            
+            \item \textbf{Dataset Characteristics:} The dataset used may not fully represent real-world scenarios. It was created offline, potentially missing the dynamic exploration patterns of a live crawler. Additionally, the dataset's imbalance might not reflect all web applications, where near-duplicates could outnumber distinct pages.
+            
+            \item \textbf{HTML Preprocessing:} Our approach of trimming HTML to exclude script tags may have contributed to the poorer performance on JavaScript-based applications like PetClinic. Future work could explore more sophisticated preprocessing techniques or increased context sizes to include complete \ac{dom} structures.
+            
+            \item \textbf{Prompt Design:} The feedback loop did not include examples of near-duplicates in the prompt, potentially influencing the model's behaviour. Further research could investigate the impact of balanced example inclusion. In our experiments, the \ac{llm} clearly showed an understanding of the HTML, and the prompt determined the goodness of the results. Therefore, further prompt or feedback loop improvements could yield better results.
+
+            \item \textbf{Probabilistic Approach:} All probabilistic machine learning techniques must address the issue that outcomes may not always match expectations because there is no well-defined deterministic rule governing the classification process. According to more recent studies, the term hallucinations may be masking the real issue, which is that \acp{llm} produces what seems most human rather than the truth. They conclude that "bullshitting" would be a more appropriate term to use in place of hallucinations \cite{hicks_chatgpt_2024}. 
+        \end{itemize}
+        
+    \subsection{Future Directions}
+        The rapid advancements in \ac{llm} technology present exciting opportunities for improving our approach:
+        \begin{itemize}
+            \item \textbf{Evolving \ac{llm} Capabilities:} As language and code understanding in \acp{llm} improve, along with increased efficiency, our approach may become more suitable for production use. Growing context sizes in \acp{llm} could enable the processing of entire \ac{dom} structures without trimming, potentially improving accuracy. This could also facilitate one-shot or few-shot approaches with provided examples.
+            
+            \item \textbf{Multi-modal Approaches:} While hallucination issues hindered our initial experiments with vision learning models, the coming release of multi-modal models like Llama could offer new avenues for exploration.
+
+            \item \textbf{Synergies:} Duplicate or near-duplicate detection is not a problem only observed in web testing. Thus, exploring further synergies with other areas like process mining could also add value. 
+        \end{itemize}

@@ -8,23 +8,36 @@
 % ---- Packages ----
 %
 \usepackage{graphicx} % enhanced support for graphics
+\usepackage{subcaption}
 \usepackage{url} % add macros for handling URLs in text
 \usepackage[nohyperlinks,nolist]{acronym} % abbreviation utilities
 \usepackage{listings}
+\usepackage{svg}
 % TODO: add more packages below if necessary
 %
 % ---- Acronyms ----
 %
 \begin{acronym}
 \acro{rq}[RQ]{Research Question}
+\acro{llm}[LLM]{Large Language Model}
+\acro{html}[HTML]{Hypertext Markup Language}
+\acro{nlp}[NLP]{natural language processing}
+\acro{dom}[DOM]{Document Object Model}
+\acro{rted}[RTED]{Robust Tree Edit Distance}
+\acro{rnn}[RNN]{Recurring Neural Network}
+\acro{lstm}[LSTM]{Long Short-Term Memory}
+\acro{apted}[APTED]{All Path Tree Edit Distance}
+\acro{vips}[VIPS]{Vision-based Page Segmentation}
 % TODO: define more acronyms here
 \end{acronym}
+%
+% ---- 
 %
 % ---- Begin Document ----
 %
 \begin{document}
 %
-\title{Similarity classification of HTML with Large Language Models}
+\title{Similarity Classification of HTML with Large Language Models}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
@@ -43,21 +56,22 @@ Technical University of Munich\\
 % ---- Abstract ----
 %
 \begin{abstract}
-The abstract should briefly summarize the contents of the paper in
-15--250 words.
-
-\keywords{First keyword  \and Second keyword \and Another keyword.}
+    \input{text/00_abstract}
 \end{abstract}
 %
 % ---- Text Parts ----
 %
 \input{text/01_introduction}
+\input{text/02_related_work}
+\input{text/03_approach}
+\input{text/04_evaluation}
+\input{text/05_discussion}
 \input{text/98_conclusion}
 %
 % ---- Appendix ----
 %
-\appendix
-\input{text/99_appendix}
+%\appendix
+%\input{text/99_appendix}
 %
 % ---- Bibliography ----
 %

@@ -1,0 +1,38 @@
+\section{Approach}
+
+    This section outlines our methodology for using \acp{llm} to classify web pages into distinct and near-duplicates. The following subsection introduces \acp{llm}, and our approach is explained in depth afterwards.
+
+\subsection{Large Language Models}
+    \label{sec:approach:sub:llm}
+
+    \acp{llm} are artificial intelligence systems designed to understand and generate human-like text \cite{vaswani_attention_2017}. These models, such as GPT-4 and Llama 3, leverage deep learning techniques, especially transformer architecture and are trained on vast amounts of diverse data, enabling them to perform a wide range of language-related tasks with high proficiency \cite{touvron_llama_2023,openai_gpt-4_2024}. The evolution of LLMs represents a significant milestone in \ac{nlp}. Early models focused on specific language tasks, but with the upcoming transformer architectures, models have demonstrated remarkable capabilities in understanding and generating natural language. The transformer architecture, introduced by Vaswani et al. 2017 at Google \cite{vaswani_attention_2017}, is based on self-attention mechanisms that allow the model to weigh the importance of different words in a sentence, enabling it to capture long-range dependencies more effectively than previous architectures like \ac{rnn} and \ac{lstm}. This has significantly improved various \ac{nlp} tasks.
+    
+    \acp{llm} come in different sizes (number of weights), each offering a trade-off between capability and resource consumption. Bigger models tend to perform better due to their increased capacity to understand and generate complex text. However, they require substantial computational resources, making them less practical for deployment in resource-constrained environments. Conversely, smaller models are more efficient but may not achieve the same level of performance as their larger counterparts \cite{brown_language_2020}. An important consideration in utilizing \acp{llm} is prompt sensitivity. Open-source models often exhibit variability in their output quality based on how the input prompt is phrased \cite{sclar_quantifying_2024}. This sensitivity necessitates careful prompt engineering to ensure consistent and high-quality outputs. Commercial models like GPT-4 mitigate this issue by fine-tuning with reinforcement learning through human feedback \cite{openai_gpt-4_2024}. 
+    
+    In the context of this research, \acp{llm} are employed to understand and classify HTML documents by leveraging their advanced text-understanding capabilities. One of the critical strengths of \acp{llm} is their generalization capability, which allows them to perform well on various tasks even with limited specific training data. This is achieved through different learning modes, such as few-shot, one-shot, and zero-shot. Few-shot means that a few task demonstrations are provided to the model as conditioning at inference time. One-shot is comparable to few-shot but only using one demonstration, and zero-shot is instead of using any examples, the task is described in plain words. These modes enable the models to generalize from few examples or task descriptions alone, making them highly adaptable to new and diverse tasks \cite{brown_language_2020,touvron_llama_2023}.
+
+\subsection{The Proposed Approach}
+    \label{sec:approach:sub:proposed}
+
+    \begin{figure}[htbp]
+        \label{fig:gscan}
+        \centering
+        \includesvg{figures/GeminiScan}
+        \caption{Approach: solid for inference, dashed for prompt engineering}
+    \end{figure}
+
+    Figure 1 gives an overview of our approach to efficiently classify web pages by leveraging the strengths of both small and large \acp{llm}. The approach consists of an inference loop for classification and a feedback loop for prompt optimization.
+
+    \subsubsection{Inference Loop}
+    \label{sec:approach:sub:proposed:sub:inference}
+
+    The inference loop, illustrated by solid lines in Figure 1, is designed to efficiently classify web pages using a small \ac{llm}. This loop involves several key steps: First, we selected a small \ac{llm} for inference to benefit from speed and efficiency while maintaining sufficient capability for the task. Preliminary experiments indicated that while a larger \ac{llm} could solve the task more effectively, it would be more computationally expensive and slower in generating output. One challenge we encountered was that the entire HTML file often exceeds the maximum input length of the small \ac{llm}. To address this, we filter the HTML file to include only the body tag, excluding scripts. This approach, consistent with previous research by \cite{corazza_web_2021}, ensures that the relevant content is processed. We opted for this simple filtering to avoid introducing complex preprocessing steps that would become unnecessary as the context length of \acp{llm} rapidly evolves.
+    
+    The prompt, concatenated with the two filtered HTML files, is fed into the small-scale model, generating 20 tokens as output. Tokens are the smallest units of text the model processes, such as words or punctuation marks. This token threshold was determined through preliminary experiments to ensure the classification is never cut off. Although the model is instructed to generate a reasoning explanation after the classification output, we filter the generated tokens to extract the classification result. The model's reasoning helps debug by highlighting misunderstandings or interpretation issues within the prompt, which is valuable information for the feedback loop. We must filter the generated tokens because the \ac{llm} does not always output the classification as the first word. Preliminary experiments showed a loss in effectiveness when strictly requiring the classification to be the first word. We have chosen to focus on distinguishing distinct and near-duplicate states, as current methods can detect clones effectively \cite{yandrapally_near-duplicate_2020}. 
+    
+    Despite extensive prompt engineering, we reached a performance ceiling with an F1 score of 0.6. As mentioned in Section \ref{sec:approach:sub:llm}, open-source \acp{llm} suffer from prompt sensitivity, which made further improvements labour intensive. Additionally, defining the problem in depth beyond high-level definitions prevalent in current research proved to be highly complex.
+
+    \subsubsection{Feedback Loop}
+    \label{sec:approach:sub:proposed:sub:feedback}
+
+    To improve the initial prompt without extensive manual intervention, we introduced a feedback loop inspired by the training methods of large \acp{llm} using human feedback \cite{ouyang_training_2022}. Instead of humans, we utilize a big-scale \ac{llm} to provide feedback and improve the prompt. This approach has been validated by others, demonstrating that \acp{llm} can effectively serve as prompt engineers \cite{zhou_large_2023}. After predicting the class for the compared states, incorrectly classified results and their F1 scores are sent as a batch to the larger \ac{llm}, along with visual renderings of the respective web pages. Adding visual rendering was motivated by increasing the overall information given to the big-scale \ac{llm}. The large \ac{llm} then adapts the prompt to enhance classification accuracy in subsequent iterations. Our automated feedback loop improves the prompt's effectiveness significantly, leveraging the large \ac{llm}'s capability to understand and refine prompts based on detailed feedback from the inference loop.

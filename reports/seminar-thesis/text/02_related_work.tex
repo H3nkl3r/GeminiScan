@@ -1,0 +1,43 @@
+\section{Related Works}
+
+    The detection of near-duplicates in web applications has been explored through various approaches across multiple domains, including information retrieval, computer vision, and web testing. This section introduces earlier methods, recent research, and state-of-the-art techniques and presents the definitions of near-duplicates used in our work \cite{yandrapally_near-duplicate_2020}. 
+
+    \subsection{Earlier Research}
+     
+        In the information retrieval domain, near-duplicate detection techniques primarily originate from search engines, where the focus is on the content of web pages. Due to the vast amount of data, performance often precedes accuracy. Hashing techniques, such as Simhash used by Google, have proven effective for this purpose \cite{charikar_similarity_2002}. These methods typically aim to identify near-duplicates between different sites rather than within the same site.
+        
+        To use another representation besides the \ac{dom} tree, some techniques from computer vision could be used, which employ screenshots of web pages. These techniques operate at various levels of granularity, utilizing techniques like colour histograms or image hashing. However, these techniques face challenges with responsive websites that alter their appearance based on device characteristics \cite{swain_indexing_1992,yang_block_2006}. 
+        
+        In web testing, near-duplicate detection methods have primarily focused on \ac{dom}-based abstractions. The \ac{rted} method leverages the \ac{dom} to calculate the minimum sequence of node edit operations required to transform one \ac{dom} tree into another \cite{pawlik_efficient_2015}. This method emphasizes structural similarities between web pages.
+        
+        Yandrapally et al. 2020 \cite{yandrapally_near-duplicate_2020} conclude that despite these efforts, no single method was sufficient for web testing, prompting the development of new approaches. Furthermore, they propose a finer-grained classification of cosmetic (irrelevant changes like different advertisements), dynamic data (data changes with the same page structure), and duplication (addition or removal of equivalent web elements) categories. Overall, they define near-duplicates as states that do not change the overall functionality of a web page, typically differing only by small cosmetic changes.
+
+    \subsection{Recent Research}
+    
+        Corazza et al. 2021 \cite{corazza_web_2021} propose a new approach utilizing the \ac{dom} tree and tree kernel functions to compute similarities between tree structures. Tree kernel functions compute the similarity between tree structures, besides \ac{dom} trees they are also used on abstract syntax trees for clone detection. The authors employed a supervised ad hoc classifier on similarity vectors based on tree kernel functions. Despite their efforts, their approach showed only marginal improvements over older methods reviewed by Yandrapally et al. 2020 \cite{yandrapally_near-duplicate_2020}. Definitions of near-duplicates in the paper remained inconsistent, with terms like "minor changes", "noticeable differences", and "minimal, insignificant changes" being used interchangeably.
+        
+        With the prevalence of component-based software engineering in modern web development, particularly with frameworks like React \cite{noauthor_technology_nodate}, new methodologies have been developed \cite{vale_twenty-eight_2016,krznar_current_2016}. Yandrapally et al. 2023 \cite{yandrapally_fragment-based_2023} applied this concept by using the \ac{vips} algorithm \cite{cai_vips_2003} to segment web pages into components. The VIPS algorithm works with a top-down approach, combining visual and structural information to fit lines between blocks without visually crossing them, resulting in a tree of fragments. The tree structure is then analyzed using \ac{apted} \cite{pawlik_tree_2016} and colour histograms \cite{swain_indexing_1992}. This integrated approach leverages visual and structural information to classify pages based on rule-based criteria. Their rule-based classifier includes the fine-grained classes proposed by Yandrapally et al. 2020 \cite{yandrapally_near-duplicate_2020}.
+        
+        Furthermore, neural embeddings represent a cutting-edge approach. For instance, Stocco et al. 2023 \cite{stocco_neural_2023} applied the doc2vec model to embed \ac{dom} representations and compute cosine similarities between these embeddings. These similarity vectors were then classified using a fully connected neural network. This neural network requires training and, therefore, labelled training data, making it more effort to adopt. Recent work-in-progress efforts have utilized distilBERT embeddings and fine-tuning to achieve better results. Definitions of near-duplicates in this context varied between "states similar in functionality" and "concrete instances of the same logical state with minor changes".
+
+    \subsection{Definitions}
+    
+        These varied definitions and methods highlight the complexity and interpretative nature of detecting near-duplicates in web applications. Our \ac{llm}-based approach aims to address these limitations by leveraging large language models' advanced language understanding capabilities. We adopt the definition used by Yandrapally et al. 2020 \cite{yandrapally_near-duplicate_2020} without the fine-grained subcategories and minor linguistic simplification:
+        
+        \begin{definition}[Near-Duplicate]
+        A given state pair is considered a functional near-duplicate if the changes between the states do not alter the overall functionality of either state.
+        \end{definition}
+        
+        \begin{definition}[Distinct]
+        A given state pair is considered functionally distinct if there is any semantic or functional difference between the two pages.
+        \end{definition}
+        
+        \begin{definition}[Clone]
+        A given state pair is considered a functional clone if they have no semantic, functional, or perceptible differences.
+        \end{definition}
+        
+        
+
+    \subsection{Dataset}
+    
+        All presented approaches use the dataset created by Yandrapally et al. 2020 \cite{yandrapally_near-duplicate_2020}, which contains approximately 100,000 labelled state pairs from nine open-source web applications. By manually labelling a large, labour-intensive dataset, Yandrapally et al. 2020 \cite{yandrapally_near-duplicate_2020} made research in this area comparable and facilitated newer methods, making it a defacto standard. This dataset is a benchmark for evaluating the effectiveness of near-duplicate detection methods. 

@@ -1,0 +1,10 @@
+
+\begin{itemize}
+    Web application testing is crucial to ensure software quality and reliability. Successful test automation reduces the need for manual testing. However, near-duplicate web pages, i.e. different pages with the overall same functionality, pose a significant challenge for effective test automation. Detecting these near-duplicates is essential for creating efficient test suites that avoid redundant test cases while maintaining comprehensive coverage. This paper presents GeminiScan, a novel approach leveraging \acp{llm} for near-duplicate detection in web testing. Our method combines a small-scale \ac{llm} for efficient inference with a large-scale \ac{llm} for prompt optimization, addressing the limitations of existing techniques in semantic understanding and generalization.
+    We evaluate GeminiScan on a subset of the widely-used Yandrapally et al. 2020 dataset, focusing on two web applications: Addressbook (PHP-based) and PetClinic (JavaScript-based). Our approach achieves F1 scores of 0.87 and 0.78 for Addressbook and PetClinic, respectively outperforming traditional methods like RTED and approaching the performance of state-of-the-art techniques such as WebEmbed and FragGen.
+    GeminiScan performs well in identifying distinct pages and effectively detects near-duplicates, with an average classification time of 455ms for Addressbook and 350ms for PetClinic on an Nvidia A100 GPU. Our method shows particular strength in avoiding false positives, rarely misclassifying near-duplicates as distinct.
+    This research contributes to the field by demonstrating the potential of \acp{llm} in web testing, offering a generalizable approach that balances efficiency and effectiveness. While computational requirements present a current challenge, the rapid advancements in \acp{llm} suggest promising avenues for future improvements in near-duplicate detection for web testing.
+\end{itemize}
+
+
+\keywords{Large Language Models \and Web Application Testing \and Llama \and GPT \and Similarity Classification}

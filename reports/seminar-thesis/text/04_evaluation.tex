@@ -1,0 +1,132 @@
+\section{Evaluation}
+    
+        This section evaluates the effectiveness and efficiency of our proposed approach for detecting near-duplicate web pages, comparing it to state-of-the-art techniques. 
+    
+    \subsection{Dataset}
+        \label{sec:eval:sub:data}
+
+        We utilized the annotated dataset by Yandrapally et al. 2020 \cite{yandrapally_near-duplicate_2020}, which comprises 97.5k state pairs from nine open-source web applications. This dataset allows direct comparison with other approaches, including those discussed in the related works section. The original annotations include distinct, clone, and near-duplicate classifications. We removed all clone instances as they can be reliably detected using existing methods. Due to computational resource constraints, we focused on two applications: Addressbook and PetClinic. These were chosen to represent different web technologies: Addressbook is PHP-based, while PetClinic uses a JavaScript framework. Table 1 provides an overview of the dataset used in this study.
+
+        \begin{table}[h]
+            \centering
+            \label{table:data}
+            \begin{tabular}{llllll}
+                \hline
+                Application & Technology                          & States & Pairs\protect\footnotemark & Distinct & Near-Duplicates \\ \hline
+                Addressbook & PHP-based, Javascript               & 131    & 8515  & 6142     & 2347            \\
+                PetClinic   & Angular (JavaScript), Spring (Java) & 149    & 11026 & 9411     & 1613            \\ \hline
+                Total       &                                     & 280    & 19541 & 15553    & 3960               
+            \end{tabular}
+            \caption{Manual Classifications and Technology of Web Applications}
+        \end{table}
+
+        \footnotetext{28 Clones were emitted}
+
+    \subsection{Implementation}
+        \label{sec:eval:sub:impl}
+
+        Our implementation utilizes two language models:
+
+        \begin{itemize}
+            \item Llama 3 8B \cite{touvron_llama_2023}, an open-source model chosen for greater control.
+            \item GPT-4o \cite{noauthor_gpt-4o_nodate}, employed for the feedback loop due to resource constraints of hosting a big model ourselves.
+        \end{itemize}
+        
+        We used the Python library BeautifulSoup for HTML preprocessing. The implementation was run on an Nvidia A100 GPU with 40GB RAM. The code for preprocessing and prediction is openly available for reproducibility \footnote{\url{https://github.com/H3nkl3r/GeminiScan}}.
+    
+    \subsection{Experimental Procedure}
+        \label{sec:eval:sub:proc}
+    
+        The feedback loop was executed 12 times, with each iteration processing 100 state pairs. Resource limitations and the observed saturation of the F1 score determined this number. We used the F1 score as the primary metric for the feedback loop.
+        \ac{llm} output was generated in batches of 8, the maximum batch size accommodated by the GPU's RAM. Furthermore, we used the recommended HuggingFace settings of $temperature=0.6$ and $top_p=0.9$.
+        For performance evaluation, we employed precision, recall, and F1-score. These metrics were chosen for their effectiveness in measuring classification performance and to facilitate comparison with other approaches.
+    
+    \subsection{Baseline}
+        \label{sec:eval:sub:base}
+    
+        We compared our approach to the following baselines:
+
+        \begin{itemize}
+            \item A naive baseline of always predicting "distinct", given the imbalanced nature of the dataset.
+            \item \ac{rted} \cite{pawlik_efficient_2015}, previously identified as the fastest method before the introduction of FragGen and WebEmbed.
+            \item WebEmbed by Stocco et al. 2023 \cite{stocco_neural_2023}
+            \item FragGen by Yandrapally et al. 2023 \cite{yandrapally_fragment-based_2023}
+        \end{itemize}
+
+        WebEmbed and FragGen are strong benchmarks due to their superior performance in near-duplicate detection and usewelche von beiden?
+11:47
+ of the same evaluation data. Please note that FragGen does not report recall and precision.
+        It should be noted that our approach uses binary classification (near-duplicate or distinct), while the baselines employ multi-class classification. However, we deemed this comparison valid due to the dataset's negligible number of clone instances (0.14\%).
+
+    \subsection{Prompt}
+        \label{sec:approach:sub:proposed:sub:prompt}
+
+        A critical component of our approach is the prompt design for the \ac{llm}, which was iteratively refined through an automated feedback loop. This process produced a final prompt consisting of a system prompt and a user prompt.
+        The system prompt (Listing \ref{lst:SysPrompt}) establishes the context and defines the task:
+    
+    \begin{lstlisting}[breaklines, caption={Final System Prompt},captionpos=b, label={lst:SysPrompt}]
+    You are an intelligent agent skilled in natural language processing and web development. Your task is to classify pairs of HTML files into two categories: "near duplicate" or "distinct". "Near duplicate" HTML files represent the same logical state with minor differences. "Distinct" HTML files represent different logical states, particularly if they serve different purposes or contain significantly different content. For example, if one file is a group management page and the other is a shopping list page, they must be classified as "distinct". Such functional differences must lead to a "distinct" classification, even if the overall structure is similar.
+    \end{lstlisting}
+    The user prompt (Listing \ref{lst:UsrPrompt}) provides more detailed instructions:
+
+    \begin{lstlisting}[breaklines, caption={Final User Prompt},captionpos=b, label={lst:UsrPrompt}]
+    I will provide you with two HTML files. Please analyze them and determine whether they are "near duplicate" or "distinct". Provide a detailed explanation of your reasoning based on the structure, content, navigation elements, and any significant differences in elements and functionality. Pay special attention to functional differences such as different purposes, form actions, methods, and significant content differences. If there are any significant functional differences, such as different purposes (e.g., one page is for group management and the other is for displaying a shopping list) or significant content differences (e.g., one file has a form and the other has a table), classify the files as "distinct". HTML File 1: <html> HTML File 2: <html> Based on the analysis of the above HTML files, are they "near duplicate" or "distinct"? Please explain your reasoning. Consider factors such as structure, content, navigation elements, and any significant differences in elements and functionality. Highlight any functional differences, especially different purposes and significant content differences. If the pages serve different purposes or have significant content differences (e.g., one page is for group management and the other is for displaying a shopping list, or one file has a form and the other has a table), classify them as "distinct."
+    \end{lstlisting}
+        This prompt, generated through our feedback loop, demonstrates several key characteristics:
+        \begin{itemize}
+            \item Task Definition: It clearly defines the classification task and the categories ("near-duplicate" or "distinct").
+            \item Reasoning Requirement: The prompt asks for detailed explanations, leveraging the \ac{llm}'s reasoning capabilities.
+            \item Focus Areas: It highlights specific aspects, such as structure, content, navigation elements, and functionality.
+            \item Examples: The prompt provides examples of distinct cases which may help guide the model's decision-making process.
+            \item Repetition: Key points are reiterated, potentially reinforcing their importance to the \ac{llm}.
+        \end{itemize}
+
+        Notably, the prompt does not provide specific examples for near-duplicate cases. 
+        The automated nature of the prompt generation demonstrates the effectiveness of our feedback loop in refining the prompt without manual intervention. This approach allowed us to overcome the initial performance ceiling and prompt sensitivity issues often associated with open-source \acp{llm}.
+    
+    \subsection{Results}
+        \label{sec:eval:sub:result}
+
+        Table 2 presents the macro-averaged F1 scores, precision, and recall for our approach (GeminiScan) alongside the baseline methods.
+
+        \begin{table}[htbp]
+            \centering
+            \label{table:f1}
+            \begin{tabular}{lcccccc}
+                \hline
+                & \multicolumn{3}{c}{Addressbook} & \multicolumn{3}{c}{PetClinic} \\ \cline{2-4} \cline{5-7}
+                Method              & $F_1$ Score   & Precision     & Recall        & $F_1$ Score   & Precision     & Recall        \\ \hline
+                Distinct            & 0.42          & 0.86          & 0.5           & 0.46          & 0.93          & 0.5           \\
+                RTED                & 0.70          & 0.69          & 0.73          & 0.73          & 0.70          & 0.77          \\
+                WebEmbed            & \textbf{0.92} & \textbf{0.89} & \textbf{0.95} & 0.81          & \textbf{0.77} & 0.85          \\
+                FragGen             & 0.89          & -             & -             & \textbf{1.00} & -             & -             \\
+                \textit{GeminiScan} & 0.87          & 0.85          & 0.92          & 0.78          & 0.74          & \textbf{0.90} \\ \hline
+            \end{tabular}
+            \caption{Macro-averaged $F_1$ scores for Addressbook and PetClinic}
+        \end{table}
+
+        Our approach outperforms \ac{rted} by 24\% and 7\% on Addressbook and PetClinic, respectively. It achieves comparable performance to state-of-the-art methods, with F1 scores 5\% and 2\% lower than WebEmbed for Addressbook and PetClinic and 4\% and 22\% lower than FragGen. GeminiScan shows good values for recall, being the 3\% lower as WebEmbed on Addressbook and 6\% better on PetClinic.
+        Figures \ref{fig:conv_address} and \ref{fig:conf_pet} show the confusion matrices for Addressbook and PetClinic classifications.
+
+        \begin{figure}[ht]
+          \centering
+          \begin{subfigure}[b]{0.48\textwidth}
+            \includesvg[width=\textwidth]{figures/confusion_matrix_address.svg}
+            \caption{Confusion Matrix of Addressbook classification task}
+            \label{fig:conv_address}
+          \end{subfigure}
+          \hfill
+          \begin{subfigure}[b]{0.48\textwidth}
+            \includesvg[width=\textwidth]{figures/confusion_matrix_petclinic.svg}
+            \caption{Confusion Matrix of PetClinic classification task}
+            \label{fig:conf_pet}
+          \end{subfigure}
+          \caption{Confusion matrices for classification tasks}
+          \label{fig:both_matrices}
+        \end{figure}
+
+        In the Addressbook classification task (Figure \ref{fig:conv_address}), the model correctly identifies 5165 distinct pages and misclassifies 977 distinct pages as near-duplicates. Additionally, the model correctly identifies 2345 near-duplicates but misclassifies two near-duplicates as distinct pages. For the PetClinic classification task (Figure \ref{fig:conf_pet}), the model correctly classifies 7827 distinct pages and incorrectly labels 1584 distinct pages as near-duplicates. It accurately identifies 1559 near-duplicates while misclassifying 54 near-duplicates as distinct pages.
+
+        Overall, the model demonstrates strong performance in identifying distinct pages and effectively detecting near-duplicates. However, there is a notable number of false negatives, where distinct pages are misclassified as near-duplicates. Conversely, the model rarely misclassifies near-duplicates as distinct. Regarding efficiency, our approach averages 455ms per classification for Addressbook and 350ms for PetClinic on an Nvidia A100 GPU with a batch size of 8. Classification time varies with the size of the \ac{dom} tree, which affects the prompt length. The progression of the F1 score through the feedback loop was high initially. Including form actions and examples, the feedback loop improved the F1 score by 0.2 for each. Afterwards, the progression got smaller and eventually saturated.
+
+        
